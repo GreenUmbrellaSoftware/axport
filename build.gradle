@@ -1,0 +1,19 @@
+apply plugin: 'groovy'
+apply plugin: 'eclipse'
+
+version = 0.1
+
+sourceCompatibility = 1.6
+
+repositories {
+    mavenCentral()
+}
+ 
+dependencies {
+    groovy  'org.codehaus.groovy:groovy-all:1.8.6'
+	compile 'org.apache.ddlutils:ddlutils:1.0'
+	compile 'org.apache.derby:derby:10.9.1.0'
+    compile 'com.healthmarketscience.jackcess:jackcess:1.2.7'
+    testRuntime 'junit:junit:4.10'
+}
+

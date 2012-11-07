@@ -1,0 +1,963 @@
+<?xml version="1.0"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+  <database name="RSTA_2012_League.mdb">
+    <table name="AthInfo">
+      <column name="Athlete" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="Addr" primaryKey="false" required="false" type="VARCHAR" size="60" autoIncrement="false"/>
+      <column name="City" primaryKey="false" required="false" type="VARCHAR" size="60" autoIncrement="false"/>
+      <column name="ZIP" primaryKey="false" required="false" type="VARCHAR" size="20" autoIncrement="false"/>
+      <column name="Cntry" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="DayP1" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="EveP1" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="FaxP1" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="DayP2" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="EveP2" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="FaxP2" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="MailTo" primaryKey="false" required="false" type="VARCHAR" size="80" autoIncrement="false"/>
+      <column name="Seasonal" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="FinaFed" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="RegDate" primaryKey="false" required="false" type="TIMESTAMP" size="8" autoIncrement="false"/>
+      <column name="NRCD" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="EMail" primaryKey="false" required="false" type="VARCHAR" size="100" autoIncrement="false"/>
+      <column name="Member" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="JrHS" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="HS" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="YMCA" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="Coll" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="SL" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="DUAL" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="Mast" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="Dis" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="Polo" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="Ethnic" primaryKey="false" required="false" type="TINYINT" size="1" autoIncrement="false"/>
+      <column name="MedCondition" primaryKey="false" required="false" type="VARCHAR" size="240" autoIncrement="false"/>
+      <column name="Medication" primaryKey="false" required="false" type="VARCHAR" size="240" autoIncrement="false"/>
+      <column name="DoctorName" primaryKey="false" required="false" type="VARCHAR" size="60" autoIncrement="false"/>
+      <column name="DoctorPhone" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="EmerContact" primaryKey="false" required="false" type="VARCHAR" size="60" autoIncrement="false"/>
+      <column name="EmerPhone" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="MailTo2" primaryKey="false" required="false" type="VARCHAR" size="80" autoIncrement="false"/>
+      <column name="Addr2" primaryKey="false" required="false" type="VARCHAR" size="60" autoIncrement="false"/>
+      <column name="City2" primaryKey="false" required="false" type="VARCHAR" size="60" autoIncrement="false"/>
+      <column name="State2" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="ZIP2" primaryKey="false" required="false" type="VARCHAR" size="20" autoIncrement="false"/>
+      <column name="Cntry2" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="EMail2" primaryKey="false" required="false" type="VARCHAR" size="100" autoIncrement="false"/>
+      <column name="UseMailTo" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="CusPrompt1" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="CusValue1" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="CusPrompt2" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="CusValue2" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="CusPrompt3" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="CusValue3" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="State" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="BLIND" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="DEAF" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="PHYSICAL" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="COGNITIVE" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="SecAddr" primaryKey="false" required="false" type="VARCHAR" size="60" autoIncrement="false"/>
+      <column name="SecAddr2" primaryKey="false" required="false" type="VARCHAR" size="60" autoIncrement="false"/>
+      <column name="PrimaryLast" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="PrimaryFirst1" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="PrimaryFirst2" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="SecondaryLast" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="SecondaryFirst1" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="SecondaryFirst2" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="CellP1" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="CellP2" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="UseBoth" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="EveP1P2" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="CellP1P2" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="EMail1P2" primaryKey="false" required="false" type="VARCHAR" size="100" autoIncrement="false"/>
+      <column name="EveP2P2" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="CellP2P2" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="EMail2P2" primaryKey="false" required="false" type="VARCHAR" size="100" autoIncrement="false"/>
+      <column name="CellAthlete" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="EMailAthlete" primaryKey="false" required="false" type="VARCHAR" size="100" autoIncrement="false"/>
+      <column name="Middle" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="USSDonation" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="PrimaryLast2" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="FinaFedCntry" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="ExpAthEmail" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="ExpFatherEmail" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="ExpMotherEmail" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="ExpParent1Email" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="ExpParent2Email" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="RegEMail" primaryKey="false" required="false" type="VARCHAR" size="100" autoIncrement="false"/>
+      <column name="USSNewsLetter" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="HSGradYear" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+    </table>
+    <table name="Athlete">
+      <column name="Athlete" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
+      <column name="Team1" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="Team2" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="Team3" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="Group" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="SubGr" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="Last" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="First" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="Initial" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="Sex" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="Birth" primaryKey="false" required="false" type="TIMESTAMP" size="8" autoIncrement="false"/>
+      <column name="Age" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="Class" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="ID_NO" primaryKey="false" required="false" type="VARCHAR" size="34" autoIncrement="false"/>
+      <column name="Citizen" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="Inactive" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="Pref" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="Batch" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="WMGroup" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="WMSubGr" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="BCSSASwimmer" primaryKey="false" required="false" type="VARCHAR" size="4" autoIncrement="false"/>
+      <column name="BCSSADiver" primaryKey="false" required="false" type="VARCHAR" size="4" autoIncrement="false"/>
+      <column name="BCSSASyncro" primaryKey="false" required="false" type="VARCHAR" size="4" autoIncrement="false"/>
+      <column name="BCSSAPolo" primaryKey="false" required="false" type="VARCHAR" size="4" autoIncrement="false"/>
+      <column name="TheSort" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+    </table>
+    <table name="ATHRECR">
+      <column name="Athlete" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="Grad" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="PicFile" primaryKey="false" required="false" type="VARCHAR" size="22" autoIncrement="false"/>
+      <column name="HS_Name" primaryKey="false" required="false" type="VARCHAR" size="60" autoIncrement="false"/>
+      <column name="HS_Phone" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="HS_Addr" primaryKey="false" required="false" type="VARCHAR" size="60" autoIncrement="false"/>
+      <column name="HS_City" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="HS_State" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="HS_ZIP" primaryKey="false" required="false" type="VARCHAR" size="20" autoIncrement="false"/>
+      <column name="HS_Coach" primaryKey="false" required="false" type="VARCHAR" size="60" autoIncrement="false"/>
+      <column name="Oth_Team" primaryKey="false" required="false" type="VARCHAR" size="60" autoIncrement="false"/>
+      <column name="Oth_Coach" primaryKey="false" required="false" type="VARCHAR" size="60" autoIncrement="false"/>
+      <column name="HS_Study" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="HS_Rank" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="HS_Num" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="HS_GPA" primaryKey="false" required="false" type="FLOAT" size="4" autoIncrement="false"/>
+      <column name="Activities" primaryKey="false" required="false" type="VARCHAR" size="100" autoIncrement="false"/>
+      <column name="Awards" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="Add_Info" primaryKey="false" required="false" type="VARCHAR" size="100" autoIncrement="false"/>
+      <column name="Camps" primaryKey="false" required="false" type="VARCHAR" size="100" autoIncrement="false"/>
+      <column name="T1Score" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="Remarks" primaryKey="false" required="false" type="VARCHAR" size="100" autoIncrement="false"/>
+      <column name="T3Score1" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="T2Score" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="Height" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="Weight" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="Oth_Phone" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="Picture" primaryKey="false" required="false" type="VARCHAR" size="120" autoIncrement="false"/>
+      <column name="Video" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="Comments" primaryKey="false" required="false" type="VARCHAR" size="510" autoIncrement="false"/>
+      <column name="T1Name" primaryKey="false" required="false" type="VARCHAR" size="16" autoIncrement="false"/>
+      <column name="T2Name" primaryKey="false" required="false" type="VARCHAR" size="16" autoIncrement="false"/>
+      <column name="T3Name" primaryKey="false" required="false" type="VARCHAR" size="16" autoIncrement="false"/>
+      <column name="T3SName1" primaryKey="false" required="false" type="VARCHAR" size="16" autoIncrement="false"/>
+      <column name="T3SName2" primaryKey="false" required="false" type="VARCHAR" size="16" autoIncrement="false"/>
+      <column name="T3Score2" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+    </table>
+    <table name="Attendance">
+      <column name="athlete" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="attend_date" primaryKey="false" required="false" type="TIMESTAMP" size="8" autoIncrement="false"/>
+      <column name="morn_aft" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="attn_stat" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="actual_dist" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="yd_mtr" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+    </table>
+    <table name="COACHES">
+      <column name="Coaches" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
+      <column name="Team" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="CPhone" primaryKey="false" required="false" type="VARCHAR" size="28" autoIncrement="false"/>
+      <column name="CEMail" primaryKey="false" required="false" type="VARCHAR" size="72" autoIncrement="false"/>
+      <column name="CName" primaryKey="false" required="false" type="VARCHAR" size="60" autoIncrement="false"/>
+      <column name="CTitle" primaryKey="false" required="false" type="VARCHAR" size="30" autoIncrement="false"/>
+      <column name="Cert1" primaryKey="false" required="false" type="VARCHAR" size="30" autoIncrement="false"/>
+      <column name="Cert2" primaryKey="false" required="false" type="VARCHAR" size="30" autoIncrement="false"/>
+      <column name="Cert3" primaryKey="false" required="false" type="VARCHAR" size="30" autoIncrement="false"/>
+      <column name="Head" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="CoachCell" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="Export" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+    </table>
+    <table name="CODE">
+      <column name="ABBR" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="DESC" primaryKey="false" required="false" type="VARCHAR" size="60" autoIncrement="false"/>
+      <column name="CODE" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
+      <column name="TYPE" primaryKey="false" required="false" type="TINYINT" size="1" autoIncrement="false"/>
+    </table>
+    <table name="CUSTOMAGEGROUP">
+      <column name="Lo_Hi" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="EventNum" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="Stroke" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="Distance" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+    </table>
+    <table name="CustomLayout">
+      <column name="ID" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
+      <column name="Name" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="Portrait" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="Title" primaryKey="false" required="false" type="VARCHAR" size="100" autoIncrement="false"/>
+    </table>
+    <table name="CustomLayoutFields">
+      <column name="FieldName" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="Description" primaryKey="false" required="false" type="VARCHAR" size="60" autoIncrement="false"/>
+      <column name="Size" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="Abbr" primaryKey="false" required="false" type="VARCHAR" size="30" autoIncrement="false"/>
+    </table>
+    <table name="CustomLayoutValues">
+      <column name="LayoutID" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="Line" primaryKey="false" required="false" type="TINYINT" size="1" autoIncrement="false"/>
+      <column name="Sequence" primaryKey="false" required="false" type="TINYINT" size="1" autoIncrement="false"/>
+      <column name="FieldName" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="FieldSize" primaryKey="false" required="false" type="TINYINT" size="1" autoIncrement="false"/>
+      <column name="Abbr" primaryKey="false" required="false" type="VARCHAR" size="30" autoIncrement="false"/>
+      <column name="RJustified" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+    </table>
+    <table name="CUSTOMRPTS">
+      <column name="Name" primaryKey="false" required="false" type="VARCHAR" size="60" autoIncrement="false"/>
+      <column name="Type" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="Team" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="Group" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="SubGr" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="Class" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="SortBy" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="Sex" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="Prelim" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="Splits" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="Stroke" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="Distance" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="I_R" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="LSC" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="LoAge" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="HiAge" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="chkIncRelayLO" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="chkStandards" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="chkInactive" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="chkSince" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="SinceDate" primaryKey="false" required="false" type="TIMESTAMP" size="8" autoIncrement="false"/>
+      <column name="chkImprove" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="chkUntil" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="UntilDate" primaryKey="false" required="false" type="TIMESTAMP" size="8" autoIncrement="false"/>
+      <column name="chkRecords" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="RECORD" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="chkNamesOnly" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="chkBlankLine" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="Grouping" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="AgeGroups" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="MeetType" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="TopN" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="StanAtLeast" primaryKey="false" required="false" type="VARCHAR" size="8" autoIncrement="false"/>
+      <column name="Course" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="chkChronological" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="Orientation" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="chkActual" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="chkNoTimes" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="chkOnlyElig" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="chkBest" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="RelaySwimmers" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="StdName" primaryKey="false" required="false" type="VARCHAR" size="16" autoIncrement="false"/>
+      <column name="Designator" primaryKey="false" required="false" type="VARCHAR" size="8" autoIncrement="false"/>
+      <column name="chkStrokeRate" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="LabelIndex" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="chkNISCA" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="chkNewStd" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="ColIndex" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="chkGoals" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+    </table>
+    <table name="Energy">
+      <column name="energy_no" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="energy_abbr" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="energy_name" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="stress_index" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+    </table>
+    <table name="ENTRY">
+      <column name="Meet" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="Athlete" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="I_R" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="Team" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="Course" primaryKey="false" required="false" type="VARCHAR" size="4" autoIncrement="false"/>
+      <column name="Score" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="Ex" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="MtEvent" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="Misc" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="Entry" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
+      <column name="Division" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="HEAT" primaryKey="false" required="false" type="TINYINT" size="1" autoIncrement="false"/>
+      <column name="LANE" primaryKey="false" required="false" type="TINYINT" size="1" autoIncrement="false"/>
+    </table>
+    <table name="ESPLITS">
+      <column name="SplitID" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="SplitIndex" primaryKey="false" required="false" type="TINYINT" size="1" autoIncrement="false"/>
+      <column name="Split" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="RelayLeg" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+    </table>
+    <table name="FAVORITES">
+      <column name="FavName" primaryKey="false" required="false" type="VARCHAR" size="16" autoIncrement="false"/>
+      <column name="FavTeam" primaryKey="false" required="false" type="VARCHAR" size="10" autoIncrement="false"/>
+      <column name="FavGroup" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="FavSubGr" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="FavClass" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="FavMeetType" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="FavCourse" primaryKey="false" required="false" type="VARCHAR" size="10" autoIncrement="false"/>
+      <column name="FavWMGroup" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="FavWMSubGr" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="SinceDate" primaryKey="false" required="false" type="TIMESTAMP" size="8" autoIncrement="false"/>
+      <column name="UntilDate" primaryKey="false" required="false" type="TIMESTAMP" size="8" autoIncrement="false"/>
+    </table>
+    <table name="HYTEKAGEGROUP">
+      <column name="AgType" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="Lo_Hi" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="Course" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="F125" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="F150" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="F1100" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="F1200" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="F1400" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="F1500" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="F1800" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="F11000" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="F11500" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="F11650" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="F225" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="F250" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="F2100" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="F2200" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="F325" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="F350" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="F3100" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="F3200" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="F425" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="F450" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="F4100" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="F4200" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="F5100" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="F5200" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="F5400" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+    </table>
+    <table name="JOURNAL">
+      <column name="JDate" primaryKey="false" required="false" type="TIMESTAMP" size="8" autoIncrement="false"/>
+      <column name="Subject" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="Comment" primaryKey="false" required="false" type="VARCHAR" size="510" autoIncrement="false"/>
+    </table>
+    <table name="MEET">
+      <column name="Meet" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
+      <column name="MName" primaryKey="false" required="false" type="VARCHAR" size="90" autoIncrement="false"/>
+      <column name="Start" primaryKey="false" required="false" type="TIMESTAMP" size="8" autoIncrement="false"/>
+      <column name="End" primaryKey="false" required="false" type="TIMESTAMP" size="8" autoIncrement="false"/>
+      <column name="AgeUp" primaryKey="false" required="false" type="TIMESTAMP" size="8" autoIncrement="false"/>
+      <column name="Since" primaryKey="false" required="false" type="TIMESTAMP" size="8" autoIncrement="false"/>
+      <column name="Course" primaryKey="false" required="false" type="VARCHAR" size="4" autoIncrement="false"/>
+      <column name="Location" primaryKey="false" required="false" type="VARCHAR" size="90" autoIncrement="false"/>
+      <column name="Remarks" primaryKey="false" required="false" type="VARCHAR" size="100" autoIncrement="false"/>
+      <column name="IndCharge" primaryKey="false" required="false" type="FLOAT" size="4" autoIncrement="false"/>
+      <column name="RelCharge" primaryKey="false" required="false" type="FLOAT" size="4" autoIncrement="false"/>
+      <column name="SurCharge" primaryKey="false" required="false" type="FLOAT" size="4" autoIncrement="false"/>
+      <column name="Type" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="Sanction" primaryKey="false" required="false" type="VARCHAR" size="30" autoIncrement="false"/>
+      <column name="MaxIndEnt" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="MaxRelEnt" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="MaxEnt" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="RestrictBest" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="NonConform" primaryKey="false" required="false" type="DOUBLE" size="8" autoIncrement="false"/>
+      <column name="EnterAtQTime" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="FacilityFee" primaryKey="false" required="false" type="FLOAT" size="4" autoIncrement="false"/>
+      <column name="TeamFee" primaryKey="false" required="false" type="FLOAT" size="4" autoIncrement="false"/>
+      <column name="Instructions" primaryKey="false" required="false" type="VARCHAR" size="500" autoIncrement="false"/>
+      <column name="MinAge" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="EnforceQualifying" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="Altitude" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="EnforceSlowQtime" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="BanNoTimes" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="Lanes" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="EvenOrOdd" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="FastToSlow" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="Masters" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="ActiveFeeXMLSent" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+    </table>
+    <table name="MemCirName">
+      <column name="cir_no" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
+      <column name="cir_name" primaryKey="false" required="false" type="VARCHAR" size="180" autoIncrement="false"/>
+      <column name="tot_lines" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="tot_dist" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="tot_seconds" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+    </table>
+    <table name="MemCirSets">
+      <column name="cir_no" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="circuit_line" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="set_reps" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="set_dist" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="set_interval" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="set_desc" primaryKey="false" required="false" type="VARCHAR" size="64" autoIncrement="false"/>
+      <column name="set_energyno" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="set_type" primaryKey="false" required="false" type="VARCHAR" size="8" autoIncrement="false"/>
+      <column name="set_categoryabbr" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+    </table>
+    <table name="MemSets">
+      <column name="set_no" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
+      <column name="set_reps" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="set_dist" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="set_interval" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="set_desc" primaryKey="false" required="false" type="VARCHAR" size="64" autoIncrement="false"/>
+      <column name="set_energyno" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="set_type" primaryKey="false" required="false" type="VARCHAR" size="8" autoIncrement="false"/>
+      <column name="set_categoryabbr" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+    </table>
+    <table name="model">
+      <column name="wk_ptr" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="wk_line" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="wk_type" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="circuit_line" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="circuit_tot" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="circuit_reps" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="set_reps" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="set_dist" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="set_interval" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="set_desc" primaryKey="false" required="false" type="VARCHAR" size="64" autoIncrement="false"/>
+      <column name="set_note" primaryKey="false" required="false" type="VARCHAR" size="110" autoIncrement="false"/>
+      <column name="set_energyno" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="set_type" primaryKey="false" required="false" type="VARCHAR" size="8" autoIncrement="false"/>
+      <column name="set_categoryabbr" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="tot_yards" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="set_starttime" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="set_finishtime" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+    </table>
+    <table name="ModelParam">
+      <column name="wk_ptr" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
+      <column name="wk_num" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="wk_date" primaryKey="false" required="false" type="TIMESTAMP" size="8" autoIncrement="false"/>
+      <column name="start_time" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="rest_period" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="group_abbr" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="subgroup_abbr" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="course_yls" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="tot_yards" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="tot_stress" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="ck_selected" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+    </table>
+    <table name="modt30times">
+      <column name="athlete" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="event_no" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="course_yls" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="event_dist" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="event_time" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="shave_type" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+    </table>
+    <table name="MTEVENT">
+      <column name="Meet" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="MtEv" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="MtEvX" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="Lo_Hi" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="Course" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="MtEvent" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
+      <column name="Distance" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="Stroke" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="Sex" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="I_R" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="Session" primaryKey="false" required="false" type="TINYINT" size="1" autoIncrement="false"/>
+      <column name="Division" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="EventType" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+    </table>
+    <table name="MTEVENTE">
+      <column name="Meet" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="MtEv" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="MtEvX" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="Lo_Hi" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="FastCut" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="SlowCut" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="Course" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="MtEvent" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
+      <column name="Fast_L" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="Slow_L" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="Fast_Y" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="Slow_Y" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="TstdFile" primaryKey="false" required="false" type="VARCHAR" size="16" autoIncrement="false"/>
+      <column name="TstDesig" primaryKey="false" required="false" type="VARCHAR" size="8" autoIncrement="false"/>
+      <column name="Distance" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="Stroke" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="Sex" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="I_R" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="Session" primaryKey="false" required="false" type="TINYINT" size="1" autoIncrement="false"/>
+      <column name="Division" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="Fee" primaryKey="false" required="false" type="FLOAT" size="4" autoIncrement="false"/>
+      <column name="ExportEvent" primaryKey="false" required="false" type="VARCHAR" size="8" autoIncrement="false"/>
+      <column name="GenderMix" primaryKey="false" required="false" type="TINYINT" size="1" autoIncrement="false"/>
+    </table>
+    <table name="OPTIONS">
+      <column name="State" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="Citizen" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="LSC" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="Standard" primaryKey="false" required="false" type="VARCHAR" size="16" autoIncrement="false"/>
+      <column name="Record" primaryKey="false" required="false" type="VARCHAR" size="16" autoIncrement="false"/>
+      <column name="Course" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="TeamType" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="RegType" primaryKey="false" required="false" type="VARCHAR" size="8" autoIncrement="false"/>
+      <column name="Line1" primaryKey="false" required="false" type="VARCHAR" size="80" autoIncrement="false"/>
+      <column name="Line2" primaryKey="false" required="false" type="VARCHAR" size="80" autoIncrement="false"/>
+      <column name="RptUCase" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="SysAgeUp" primaryKey="false" required="false" type="TIMESTAMP" size="8" autoIncrement="false"/>
+      <column name="MtAgeUp" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="MtDate" primaryKey="false" required="false" type="TIMESTAMP" size="8" autoIncrement="false"/>
+      <column name="FavSex" primaryKey="false" required="false" type="TINYINT" size="1" autoIncrement="false"/>
+      <column name="NoAge" primaryKey="false" required="false" type="TINYINT" size="1" autoIncrement="false"/>
+      <column name="MinAge" primaryKey="false" required="false" type="TINYINT" size="1" autoIncrement="false"/>
+      <column name="FavTeam" primaryKey="false" required="false" type="VARCHAR" size="10" autoIncrement="false"/>
+      <column name="FavLSC" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="CvtFactor" primaryKey="false" required="false" type="DOUBLE" size="8" autoIncrement="false"/>
+      <column name="CvtType" primaryKey="false" required="false" type="TINYINT" size="1" autoIncrement="false"/>
+      <column name="Cvt500" primaryKey="false" required="false" type="DOUBLE" size="8" autoIncrement="false"/>
+      <column name="Cvt1650" primaryKey="false" required="false" type="DOUBLE" size="8" autoIncrement="false"/>
+      <column name="FreeTurn" primaryKey="false" required="false" type="DOUBLE" size="8" autoIncrement="false"/>
+      <column name="BackTurn" primaryKey="false" required="false" type="DOUBLE" size="8" autoIncrement="false"/>
+      <column name="BreastTurn" primaryKey="false" required="false" type="DOUBLE" size="8" autoIncrement="false"/>
+      <column name="FlyTurn" primaryKey="false" required="false" type="DOUBLE" size="8" autoIncrement="false"/>
+      <column name="IMTurn" primaryKey="false" required="false" type="DOUBLE" size="8" autoIncrement="false"/>
+      <column name="Straight" primaryKey="false" required="false" type="DOUBLE" size="8" autoIncrement="false"/>
+      <column name="Y2L" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="Language" primaryKey="false" required="false" type="VARCHAR" size="16" autoIncrement="false"/>
+      <column name="LabelOption" primaryKey="false" required="false" type="TINYINT" size="1" autoIncrement="false"/>
+      <column name="ShowMI" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="ShowAges" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="ShowBirth" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="ShowClass" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="ShowFirstFirst" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="Favorite" primaryKey="false" required="false" type="VARCHAR" size="16" autoIncrement="false"/>
+      <column name="ToScreen" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="NumCopies" primaryKey="false" required="false" type="TINYINT" size="1" autoIncrement="false"/>
+      <column name="PaperSize" primaryKey="false" required="false" type="TINYINT" size="1" autoIncrement="false"/>
+      <column name="UseLeadOff" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="UseStrokeRates" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="CusPrompt1" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="CusPrompt2" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="CusPrompt3" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="RegDate" primaryKey="false" required="false" type="TIMESTAMP" size="8" autoIncrement="false"/>
+      <column name="ShowOnlyFast" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="LabelType" primaryKey="false" required="false" type="TINYINT" size="1" autoIncrement="false"/>
+      <column name="ImportDir" primaryKey="false" required="false" type="VARCHAR" size="240" autoIncrement="false"/>
+      <column name="ExportDir" primaryKey="false" required="false" type="VARCHAR" size="240" autoIncrement="false"/>
+      <column name="BackupDir" primaryKey="false" required="false" type="VARCHAR" size="240" autoIncrement="false"/>
+      <column name="ReportDir" primaryKey="false" required="false" type="VARCHAR" size="240" autoIncrement="false"/>
+      <column name="LSCFee" primaryKey="false" required="false" type="FLOAT" size="4" autoIncrement="false"/>
+      <column name="RegAddr" primaryKey="false" required="false" type="VARCHAR" size="100" autoIncrement="false"/>
+      <column name="RegCity" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="RegState" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="RegZIP" primaryKey="false" required="false" type="VARCHAR" size="20" autoIncrement="false"/>
+      <column name="RegMailTo" primaryKey="false" required="false" type="VARCHAR" size="80" autoIncrement="false"/>
+      <column name="RegPayTo" primaryKey="false" required="false" type="VARCHAR" size="80" autoIncrement="false"/>
+      <column name="PalmImportDir" primaryKey="false" required="false" type="VARCHAR" size="240" autoIncrement="false"/>
+      <column name="LSCSeasonalFee" primaryKey="false" required="false" type="FLOAT" size="4" autoIncrement="false"/>
+      <column name="BackupCheck" primaryKey="false" required="false" type="TINYINT" size="1" autoIncrement="false"/>
+      <column name="UpdateCheck" primaryKey="false" required="false" type="TINYINT" size="1" autoIncrement="false"/>
+      <column name="LastBackup" primaryKey="false" required="false" type="TIMESTAMP" size="8" autoIncrement="false"/>
+      <column name="LastSplitExtract" primaryKey="false" required="false" type="TIMESTAMP" size="8" autoIncrement="false"/>
+      <column name="AgeupToCurrent" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="DbVersion" primaryKey="false" required="false" type="VARCHAR" size="10" autoIncrement="false"/>
+      <column name="DefaultDir" primaryKey="false" required="false" type="VARCHAR" size="240" autoIncrement="false"/>
+      <column name="RelayOrder" primaryKey="false" required="false" type="VARCHAR" size="14" autoIncrement="false"/>
+      <column name="LastDir" primaryKey="false" required="false" type="VARCHAR" size="240" autoIncrement="false"/>
+      <column name="SplitPref" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="rptLastFirst" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="rptShowMI" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="rptFILast" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="rptFirstLI" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="rptShowPref" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="OfficialLine1" primaryKey="false" required="false" type="VARCHAR" size="216" autoIncrement="false"/>
+      <column name="OfficialLine2" primaryKey="false" required="false" type="VARCHAR" size="216" autoIncrement="false"/>
+      <column name="OfficialLine3" primaryKey="false" required="false" type="VARCHAR" size="216" autoIncrement="false"/>
+      <column name="UseProvince" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+    </table>
+    <table name="PREENTER">
+      <column name="THEATHLETE" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="THEMEET" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="PREENTERED" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="SESSION1" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="SESSION2" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="SESSION3" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="SESSION4" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="SESSION5" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="SESSION6" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="SESSION7" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="SESSION8" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="SESSION9" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="SESSION10" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+    </table>
+    <table name="RECNAME">
+      <column name="RecFile" primaryKey="false" required="false" type="VARCHAR" size="16" autoIncrement="false"/>
+      <column name="Year" primaryKey="false" required="false" type="VARCHAR" size="8" autoIncrement="false"/>
+      <column name="Descript" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="Flag" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="Course" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="Record" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
+    </table>
+    <table name="RECORDS">
+      <column name="Record" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="Lo_Age" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="Hi_Age" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="RecText" primaryKey="false" required="false" type="VARCHAR" size="160" autoIncrement="false"/>
+      <column name="RecDate" primaryKey="false" required="false" type="TIMESTAMP" size="8" autoIncrement="false"/>
+      <column name="RecTime" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="RecLSC" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="RecTeam" primaryKey="false" required="false" type="VARCHAR" size="10" autoIncrement="false"/>
+      <column name="Ex" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="Distance" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="Stroke" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="Sex" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="I_R" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="Rec" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
+      <column name="Course" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="Division" primaryKey="false" required="false" type="VARCHAR" size="4" autoIncrement="false"/>
+    </table>
+    <table name="RELAY">
+      <column name="RELAY" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
+      <column name="MEET" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="LO_HI" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="TEAM" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="LETTER" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="AGE_RANGE" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="SEX" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="ATH(1)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="ATH(2)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="ATH(3)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="ATH(4)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="ATH(5)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="ATH(6)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="ATH(7)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="ATH(8)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="DISTANCE" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="STROKE" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="RELAYAGE" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="REACTION1" primaryKey="false" required="false" type="VARCHAR" size="10" autoIncrement="false"/>
+      <column name="REACTION2" primaryKey="false" required="false" type="VARCHAR" size="10" autoIncrement="false"/>
+      <column name="REACTION3" primaryKey="false" required="false" type="VARCHAR" size="10" autoIncrement="false"/>
+      <column name="REACTION4" primaryKey="false" required="false" type="VARCHAR" size="10" autoIncrement="false"/>
+    </table>
+    <table name="RESULT">
+      <column name="MEET" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="ATHLETE" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="I_R" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="TEAM" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="SCORE" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F_P" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="SPLIT" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="EX" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="ORIGIN" primaryKey="false" required="false" type="VARCHAR" size="8" autoIncrement="false"/>
+      <column name="NT" primaryKey="false" required="false" type="TINYINT" size="1" autoIncrement="false"/>
+      <column name="RESULT" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
+      <column name="MISC" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="AGE" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="DISTANCE" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="STROKE" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="MTEVENT" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="POINTS" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="PLACE" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="RANK" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="TRANK" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="COURSE" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="REACTION" primaryKey="false" required="false" type="VARCHAR" size="10" autoIncrement="false"/>
+    </table>
+    <table name="RSTA">
+      <column name="Std" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
+      <column name="Lo_Age" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="Hi_age" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="F(0)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(1)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(2)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(3)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(4)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(5)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(6)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(7)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(8)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(9)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(10)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(11)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(12)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(13)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(14)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(15)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(16)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(17)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(18)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(19)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(20)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(21)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(22)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(23)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(24)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(25)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(26)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(27)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(28)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(29)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(30)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(31)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(32)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(33)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(34)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(35)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(0)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(1)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(2)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(3)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(4)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(5)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(6)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(7)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(8)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(9)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(10)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(11)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(12)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(13)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(14)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(15)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(16)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(17)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(18)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(19)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(20)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(21)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(22)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(23)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(24)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(25)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(26)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(27)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(28)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(29)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(30)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(31)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(32)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(33)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(34)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(35)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="Distance" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="Stroke" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="Sex" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="I_R" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="Division" primaryKey="false" required="false" type="VARCHAR" size="4" autoIncrement="false"/>
+    </table>
+    <table name="SESSIONS">
+      <column name="MEETID" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="SESSION" primaryKey="false" required="false" type="TINYINT" size="1" autoIncrement="false"/>
+      <column name="MAXIND" primaryKey="false" required="false" type="TINYINT" size="1" autoIncrement="false"/>
+      <column name="MAXREL" primaryKey="false" required="false" type="TINYINT" size="1" autoIncrement="false"/>
+      <column name="MAXCOMBINED" primaryKey="false" required="false" type="TINYINT" size="1" autoIncrement="false"/>
+    </table>
+    <table name="SetDescriptions">
+      <column name="set_name" primaryKey="false" required="false" type="VARCHAR" size="60" autoIncrement="false"/>
+    </table>
+    <table name="SPLITS">
+      <column name="SplitID" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="SplitIndex" primaryKey="false" required="false" type="TINYINT" size="1" autoIncrement="false"/>
+      <column name="Split" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="StrokeRate" primaryKey="false" required="false" type="FLOAT" size="4" autoIncrement="false"/>
+    </table>
+    <table name="STDNAME">
+      <column name="StdFile" primaryKey="false" required="false" type="VARCHAR" size="16" autoIncrement="false"/>
+      <column name="Year" primaryKey="false" required="false" type="VARCHAR" size="8" autoIncrement="false"/>
+      <column name="Descript" primaryKey="false" required="false" type="VARCHAR" size="50" autoIncrement="false"/>
+      <column name="D1" primaryKey="false" required="false" type="VARCHAR" size="8" autoIncrement="false"/>
+      <column name="D2" primaryKey="false" required="false" type="VARCHAR" size="8" autoIncrement="false"/>
+      <column name="D3" primaryKey="false" required="false" type="VARCHAR" size="8" autoIncrement="false"/>
+      <column name="D4" primaryKey="false" required="false" type="VARCHAR" size="8" autoIncrement="false"/>
+      <column name="D5" primaryKey="false" required="false" type="VARCHAR" size="8" autoIncrement="false"/>
+      <column name="D6" primaryKey="false" required="false" type="VARCHAR" size="8" autoIncrement="false"/>
+      <column name="D7" primaryKey="false" required="false" type="VARCHAR" size="8" autoIncrement="false"/>
+      <column name="D8" primaryKey="false" required="false" type="VARCHAR" size="8" autoIncrement="false"/>
+      <column name="D9" primaryKey="false" required="false" type="VARCHAR" size="8" autoIncrement="false"/>
+      <column name="D10" primaryKey="false" required="false" type="VARCHAR" size="8" autoIncrement="false"/>
+      <column name="D11" primaryKey="false" required="false" type="VARCHAR" size="8" autoIncrement="false"/>
+      <column name="D12" primaryKey="false" required="false" type="VARCHAR" size="8" autoIncrement="false"/>
+      <column name="D1Des" primaryKey="false" required="false" type="VARCHAR" size="30" autoIncrement="false"/>
+      <column name="D2Des" primaryKey="false" required="false" type="VARCHAR" size="30" autoIncrement="false"/>
+      <column name="D3Des" primaryKey="false" required="false" type="VARCHAR" size="30" autoIncrement="false"/>
+      <column name="D4Des" primaryKey="false" required="false" type="VARCHAR" size="30" autoIncrement="false"/>
+      <column name="D5Des" primaryKey="false" required="false" type="VARCHAR" size="30" autoIncrement="false"/>
+      <column name="D6Des" primaryKey="false" required="false" type="VARCHAR" size="30" autoIncrement="false"/>
+      <column name="D7Des" primaryKey="false" required="false" type="VARCHAR" size="30" autoIncrement="false"/>
+      <column name="D8Des" primaryKey="false" required="false" type="VARCHAR" size="30" autoIncrement="false"/>
+      <column name="D9Des" primaryKey="false" required="false" type="VARCHAR" size="30" autoIncrement="false"/>
+      <column name="D10Des" primaryKey="false" required="false" type="VARCHAR" size="30" autoIncrement="false"/>
+      <column name="D11Des" primaryKey="false" required="false" type="VARCHAR" size="30" autoIncrement="false"/>
+      <column name="D12Des" primaryKey="false" required="false" type="VARCHAR" size="30" autoIncrement="false"/>
+    </table>
+    <table name="StrokeCategory">
+      <column name="stroke_abbr" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="stroke_name" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+    </table>
+    <table name="TEAM">
+      <column name="Team" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
+      <column name="TCode" primaryKey="false" required="false" type="VARCHAR" size="10" autoIncrement="false"/>
+      <column name="TName" primaryKey="false" required="false" type="VARCHAR" size="60" autoIncrement="false"/>
+      <column name="Short" primaryKey="false" required="false" type="VARCHAR" size="32" autoIncrement="false"/>
+      <column name="LSC" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="MailTo" primaryKey="false" required="false" type="VARCHAR" size="80" autoIncrement="false"/>
+      <column name="TAddr" primaryKey="false" required="false" type="VARCHAR" size="60" autoIncrement="false"/>
+      <column name="TCity" primaryKey="false" required="false" type="VARCHAR" size="60" autoIncrement="false"/>
+      <column name="TState" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="TZip" primaryKey="false" required="false" type="VARCHAR" size="20" autoIncrement="false"/>
+      <column name="TCntry" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="Day" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="Eve" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="Fax" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <column name="TType" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="Regn" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="Reg" primaryKey="false" required="false" type="VARCHAR" size="8" autoIncrement="false"/>
+      <column name="MinAge" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="NumAth" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="EMail" primaryKey="false" required="false" type="VARCHAR" size="72" autoIncrement="false"/>
+      <column name="TM50" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="TDivision" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+    </table>
+    <table name="TestData">
+      <column name="test_no" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="athlete" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="heart_1" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="heart_2" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="heart_3" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="ind_rmk" primaryKey="false" required="false" type="VARCHAR" size="80" autoIncrement="false"/>
+    </table>
+    <table name="TestLine">
+      <column name="test_no" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="athlete" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="rep_no" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="rep_time" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+    </table>
+    <table name="TestSet">
+      <column name="test_no" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
+      <column name="test_date" primaryKey="false" required="false" type="TIMESTAMP" size="8" autoIncrement="false"/>
+      <column name="tot_reps" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="test_dist" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="test_interval" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="test_sly" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="push_off" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <column name="test_rmk" primaryKey="false" required="false" type="VARCHAR" size="80" autoIncrement="false"/>
+      <column name="test_stroke" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="use_it" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+    </table>
+    <table name="TestT30">
+      <column name="athlete" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="test_date" primaryKey="false" required="false" type="TIMESTAMP" size="8" autoIncrement="false"/>
+      <column name="test_stroke" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="test_dist" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="test_time" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="test_sly" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="test_rmk" primaryKey="false" required="false" type="VARCHAR" size="80" autoIncrement="false"/>
+      <column name="heart_1" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="heart_2" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="heart_3" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="use_it" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+    </table>
+    <table name="TIMESTD2">
+      <column name="Std" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
+      <column name="Lo_Age" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="Hi_age" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="F(0)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(1)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(2)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(3)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(4)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(5)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(6)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(7)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(8)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(9)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(10)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(11)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(12)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(13)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(14)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(15)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(16)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(17)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(18)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(19)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(20)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(21)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(22)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(23)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(24)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(25)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(26)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(27)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(28)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(29)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(30)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(31)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(32)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(33)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(34)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="F(35)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(0)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(1)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(2)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(3)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(4)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(5)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(6)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(7)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(8)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(9)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(10)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(11)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(12)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(13)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(14)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(15)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(16)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(17)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(18)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(19)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(20)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(21)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(22)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(23)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(24)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(25)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(26)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(27)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(28)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(29)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(30)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(31)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(32)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(33)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(34)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="S(35)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="Distance" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="Stroke" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="Sex" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="I_R" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="Division" primaryKey="false" required="false" type="VARCHAR" size="4" autoIncrement="false"/>
+    </table>
+    <table name="WkParam">
+      <column name="wk_ptr" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
+      <column name="wk_num" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="wk_date" primaryKey="false" required="false" type="TIMESTAMP" size="8" autoIncrement="false"/>
+      <column name="start_time" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="rest_period" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="group_abbr" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="subgroup_abbr" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="course_yls" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="tot_yards" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="tot_stress" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="ck_selected" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+    </table>
+    <table name="WorkCategory">
+      <column name="stroke_abbr" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="stroke_name" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+    </table>
+    <table name="Workout">
+      <column name="wk_ptr" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="wk_line" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="wk_type" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="circuit_line" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="circuit_tot" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="circuit_reps" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="set_reps" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="set_dist" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="set_interval" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="set_desc" primaryKey="false" required="false" type="VARCHAR" size="64" autoIncrement="false"/>
+      <column name="set_note" primaryKey="false" required="false" type="VARCHAR" size="110" autoIncrement="false"/>
+      <column name="set_energyno" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="set_type" primaryKey="false" required="false" type="VARCHAR" size="8" autoIncrement="false"/>
+      <column name="set_categoryabbr" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="tot_yards" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="set_starttime" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="set_finishtime" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+    </table>
+  </database>

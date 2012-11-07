@@ -1,0 +1,1 @@
+Read structure and data from a MS Access database file and create database independent xml files that can be used with Apache ddlUtils to move the structure and data to any supported database.
