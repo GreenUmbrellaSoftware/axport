@@ -1,10 +1,12 @@
 /**
  * 
  */
-package com.guslabs.axport
+package axport
 
 import org.apache.ddlutils.io.DatabaseIO
 import org.apache.ddlutils.model.Database
+
+import axport.AccessDatabaseReader;
 
 import groovy.util.GroovyTestCase
 

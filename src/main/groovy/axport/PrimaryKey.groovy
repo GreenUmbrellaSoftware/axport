@@ -1,4 +1,4 @@
-package com.guslabs.axport
+package axport
 
 class PrimaryKey {
   Map attributes = [:]

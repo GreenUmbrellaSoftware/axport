@@ -1,6 +1,13 @@
-package com.guslabs.axport;
+package axport;
 
 import static org.junit.Assert.*;
+import axport.ChangelogCreateTable;
+import axport.Column;
+import axport.ForeignKey;
+import axport.Index;
+import axport.PrimaryKey;
+import axport.Table;
+import axport.UniqueKey;
 
 class ChangelogCreateTableTest extends GroovyTestCase {
 	

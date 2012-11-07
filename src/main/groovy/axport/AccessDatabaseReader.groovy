@@ -1,4 +1,4 @@
-package com.guslabs.axport
+package axport
 import com.healthmarketscience.jackcess.Column
 import com.healthmarketscience.jackcess.Database
 import com.healthmarketscience.jackcess.Index
