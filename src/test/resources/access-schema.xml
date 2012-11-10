@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
-  <database name="RSTA_2012_League.mdb">
+  <database name="RSTA_2012_League">
     <table name="AthInfo">
-      <column name="Athlete" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="Athlete" primaryKey="true" required="false" type="INTEGER" size="4" autoIncrement="false"/>
       <column name="Addr" primaryKey="false" required="false" type="VARCHAR" size="60" autoIncrement="false"/>
       <column name="City" primaryKey="false" required="false" type="VARCHAR" size="60" autoIncrement="false"/>
       <column name="ZIP" primaryKey="false" required="false" type="VARCHAR" size="20" autoIncrement="false"/>
@@ -86,9 +86,12 @@
       <column name="RegEMail" primaryKey="false" required="false" type="VARCHAR" size="100" autoIncrement="false"/>
       <column name="USSNewsLetter" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
       <column name="HSGradYear" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <unique name="ZID">
+        <unique-column name="Athlete"/>
+      </unique>
     </table>
     <table name="Athlete">
-      <column name="Athlete" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
+      <column name="Athlete" primaryKey="true" required="false" type="INTEGER" size="4" autoIncrement="true"/>
       <column name="Team1" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
       <column name="Team2" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
       <column name="Team3" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
@@ -113,9 +116,27 @@
       <column name="BCSSASyncro" primaryKey="false" required="false" type="VARCHAR" size="4" autoIncrement="false"/>
       <column name="BCSSAPolo" primaryKey="false" required="false" type="VARCHAR" size="4" autoIncrement="false"/>
       <column name="TheSort" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <index name="athWMgroup">
+        <index-column name="WMGroup"/>
+        <index-column name="WMSubGr"/>
+        <index-column name="Last"/>
+        <index-column name="First"/>
+        <index-column name="Initial"/>
+      </index>
+      <index name="ID_NO">
+        <index-column name="ID_NO"/>
+      </index>
+      <index name="LastName">
+        <index-column name="Last"/>
+        <index-column name="First"/>
+        <index-column name="Initial"/>
+      </index>
+      <unique name="ZID">
+        <unique-column name="Athlete"/>
+      </unique>
     </table>
     <table name="ATHRECR">
-      <column name="Athlete" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <column name="Athlete" primaryKey="true" required="false" type="INTEGER" size="4" autoIncrement="false"/>
       <column name="Grad" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
       <column name="PicFile" primaryKey="false" required="false" type="VARCHAR" size="22" autoIncrement="false"/>
       <column name="HS_Name" primaryKey="false" required="false" type="VARCHAR" size="60" autoIncrement="false"/>
@@ -151,6 +172,9 @@
       <column name="T3SName1" primaryKey="false" required="false" type="VARCHAR" size="16" autoIncrement="false"/>
       <column name="T3SName2" primaryKey="false" required="false" type="VARCHAR" size="16" autoIncrement="false"/>
       <column name="T3Score2" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <unique name="ZID">
+        <unique-column name="Athlete"/>
+      </unique>
     </table>
     <table name="Attendance">
       <column name="athlete" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
@@ -159,9 +183,14 @@
       <column name="attn_stat" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
       <column name="actual_dist" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
       <column name="yd_mtr" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <index name="athdate">
+        <index-column name="athlete"/>
+        <index-column name="attend_date"/>
+        <index-column name="morn_aft"/>
+      </index>
     </table>
     <table name="COACHES">
-      <column name="Coaches" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
+      <column name="Coaches" primaryKey="true" required="false" type="INTEGER" size="4" autoIncrement="true"/>
       <column name="Team" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
       <column name="CPhone" primaryKey="false" required="false" type="VARCHAR" size="28" autoIncrement="false"/>
       <column name="CEMail" primaryKey="false" required="false" type="VARCHAR" size="72" autoIncrement="false"/>
@@ -173,18 +202,30 @@
       <column name="Head" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
       <column name="CoachCell" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
       <column name="Export" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <unique name="ZID">
+        <unique-column name="Coaches"/>
+      </unique>
     </table>
     <table name="CODE">
       <column name="ABBR" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
       <column name="DESC" primaryKey="false" required="false" type="VARCHAR" size="60" autoIncrement="false"/>
       <column name="CODE" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
       <column name="TYPE" primaryKey="false" required="false" type="TINYINT" size="1" autoIncrement="false"/>
+      <unique name="ZID">
+        <unique-column name="ABBR"/>
+        <unique-column name="TYPE"/>
+      </unique>
     </table>
     <table name="CUSTOMAGEGROUP">
       <column name="Lo_Hi" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
       <column name="EventNum" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
       <column name="Stroke" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
       <column name="Distance" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <unique name="Lo_Hi">
+        <unique-column name="Lo_Hi"/>
+        <unique-column name="Stroke"/>
+        <unique-column name="Distance"/>
+      </unique>
     </table>
     <table name="CustomLayout">
       <column name="ID" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
@@ -259,10 +300,13 @@
       <column name="chkGoals" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
     </table>
     <table name="Energy">
-      <column name="energy_no" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <column name="energy_no" primaryKey="true" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
       <column name="energy_abbr" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
       <column name="energy_name" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
       <column name="stress_index" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
+      <unique name="energyno">
+        <unique-column name="energy_no"/>
+      </unique>
     </table>
     <table name="ENTRY">
       <column name="Meet" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
@@ -274,16 +318,38 @@
       <column name="Ex" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
       <column name="MtEvent" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
       <column name="Misc" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
-      <column name="Entry" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
+      <column name="Entry" primaryKey="true" required="false" type="INTEGER" size="4" autoIncrement="true"/>
       <column name="Division" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
       <column name="HEAT" primaryKey="false" required="false" type="TINYINT" size="1" autoIncrement="false"/>
       <column name="LANE" primaryKey="false" required="false" type="TINYINT" size="1" autoIncrement="false"/>
+      <index name="Athlete">
+        <index-column name="Athlete"/>
+        <index-column name="Meet"/>
+        <index-column name="MtEvent"/>
+        <index-column name="I_R"/>
+      </index>
+      <index name="Meet">
+        <index-column name="Meet"/>
+        <index-column name="MtEvent"/>
+        <index-column name="Athlete"/>
+        <index-column name="I_R"/>
+      </index>
+      <index name="MtEvent">
+        <index-column name="MtEvent"/>
+      </index>
+      <unique name="ZID">
+        <unique-column name="Entry"/>
+      </unique>
     </table>
     <table name="ESPLITS">
       <column name="SplitID" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
       <column name="SplitIndex" primaryKey="false" required="false" type="TINYINT" size="1" autoIncrement="false"/>
       <column name="Split" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
       <column name="RelayLeg" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <unique name="PrimaryKey">
+        <unique-column name="SplitID"/>
+        <unique-column name="SplitIndex"/>
+      </unique>
     </table>
     <table name="FAVORITES">
       <column name="FavName" primaryKey="false" required="false" type="VARCHAR" size="16" autoIncrement="false"/>
@@ -327,6 +393,11 @@
       <column name="F5100" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
       <column name="F5200" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
       <column name="F5400" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <unique name="Primary">
+        <unique-column name="AgType"/>
+        <unique-column name="Lo_Hi"/>
+        <unique-column name="Course"/>
+      </unique>
     </table>
     <table name="JOURNAL">
       <column name="JDate" primaryKey="false" required="false" type="TIMESTAMP" size="8" autoIncrement="false"/>
@@ -334,7 +405,7 @@
       <column name="Comment" primaryKey="false" required="false" type="VARCHAR" size="510" autoIncrement="false"/>
     </table>
     <table name="MEET">
-      <column name="Meet" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
+      <column name="Meet" primaryKey="true" required="false" type="INTEGER" size="4" autoIncrement="true"/>
       <column name="MName" primaryKey="false" required="false" type="VARCHAR" size="90" autoIncrement="false"/>
       <column name="Start" primaryKey="false" required="false" type="TIMESTAMP" size="8" autoIncrement="false"/>
       <column name="End" primaryKey="false" required="false" type="TIMESTAMP" size="8" autoIncrement="false"/>
@@ -367,6 +438,16 @@
       <column name="FastToSlow" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
       <column name="Masters" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
       <column name="ActiveFeeXMLSent" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <unique name="Name">
+        <unique-column name="MName"/>
+        <unique-column name="Start"/>
+      </unique>
+      <index name="Start">
+        <index-column name="Start"/>
+      </index>
+      <unique name="ZID">
+        <unique-column name="Meet"/>
+      </unique>
     </table>
     <table name="MemCirName">
       <column name="cir_no" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
@@ -374,6 +455,13 @@
       <column name="tot_lines" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
       <column name="tot_dist" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
       <column name="tot_seconds" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <index name="memcirname">
+        <index-column name="cir_name"/>
+        <index-column name="cir_no"/>
+      </index>
+      <index name="memcirno">
+        <index-column name="cir_no"/>
+      </index>
     </table>
     <table name="MemCirSets">
       <column name="cir_no" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
@@ -385,6 +473,10 @@
       <column name="set_energyno" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
       <column name="set_type" primaryKey="false" required="false" type="VARCHAR" size="8" autoIncrement="false"/>
       <column name="set_categoryabbr" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <index name="memcirsetorder">
+        <index-column name="cir_no"/>
+        <index-column name="circuit_line"/>
+      </index>
     </table>
     <table name="MemSets">
       <column name="set_no" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
@@ -395,6 +487,16 @@
       <column name="set_energyno" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
       <column name="set_type" primaryKey="false" required="false" type="VARCHAR" size="8" autoIncrement="false"/>
       <column name="set_categoryabbr" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <index name="memsetorder">
+        <index-column name="set_energyno"/>
+        <index-column name="set_dist"/>
+        <index-column name="set_reps"/>
+        <index-column name="set_interval"/>
+        <index-column name="set_desc"/>
+      </index>
+      <index name="setno">
+        <index-column name="set_no"/>
+      </index>
     </table>
     <table name="model">
       <column name="wk_ptr" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
@@ -414,9 +516,13 @@
       <column name="tot_yards" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
       <column name="set_starttime" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
       <column name="set_finishtime" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <index name="wkptrline">
+        <index-column name="wk_ptr"/>
+        <index-column name="wk_line"/>
+      </index>
     </table>
     <table name="ModelParam">
-      <column name="wk_ptr" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
+      <column name="wk_ptr" primaryKey="true" required="false" type="INTEGER" size="4" autoIncrement="true"/>
       <column name="wk_num" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
       <column name="wk_date" primaryKey="false" required="false" type="TIMESTAMP" size="8" autoIncrement="false"/>
       <column name="start_time" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
@@ -427,6 +533,27 @@
       <column name="tot_yards" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
       <column name="tot_stress" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
       <column name="ck_selected" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <index name="wkdate">
+        <index-column name="wk_date"/>
+        <index-column name="group_abbr"/>
+        <index-column name="subgroup_abbr"/>
+        <index-column name="start_time"/>
+      </index>
+      <index name="wkgroup">
+        <index-column name="group_abbr"/>
+        <index-column name="subgroup_abbr"/>
+        <index-column name="wk_date"/>
+        <index-column name="start_time"/>
+      </index>
+      <index name="wknum">
+        <index-column name="wk_num"/>
+      </index>
+      <unique name="wkparameter">
+        <unique-column name="wk_ptr"/>
+      </unique>
+      <index name="wktotyards">
+        <index-column name="tot_yards"/>
+      </index>
     </table>
     <table name="modt30times">
       <column name="athlete" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
@@ -435,6 +562,12 @@
       <column name="event_dist" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
       <column name="event_time" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
       <column name="shave_type" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <index name="modt30athevt">
+        <index-column name="athlete"/>
+        <index-column name="course_yls"/>
+        <index-column name="shave_type"/>
+        <index-column name="event_no"/>
+      </index>
     </table>
     <table name="MTEVENT">
       <column name="Meet" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
@@ -442,7 +575,7 @@
       <column name="MtEvX" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
       <column name="Lo_Hi" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
       <column name="Course" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
-      <column name="MtEvent" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
+      <column name="MtEvent" primaryKey="true" required="false" type="INTEGER" size="4" autoIncrement="true"/>
       <column name="Distance" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
       <column name="Stroke" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
       <column name="Sex" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
@@ -450,6 +583,14 @@
       <column name="Session" primaryKey="false" required="false" type="TINYINT" size="1" autoIncrement="false"/>
       <column name="Division" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
       <column name="EventType" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <unique name="MtEv">
+        <unique-column name="Meet"/>
+        <unique-column name="MtEv"/>
+        <unique-column name="MtEvX"/>
+      </unique>
+      <unique name="ZID">
+        <unique-column name="MtEvent"/>
+      </unique>
     </table>
     <table name="MTEVENTE">
       <column name="Meet" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
@@ -459,7 +600,7 @@
       <column name="FastCut" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
       <column name="SlowCut" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
       <column name="Course" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
-      <column name="MtEvent" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
+      <column name="MtEvent" primaryKey="true" required="false" type="INTEGER" size="4" autoIncrement="true"/>
       <column name="Fast_L" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
       <column name="Slow_L" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
       <column name="Fast_Y" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
@@ -475,6 +616,14 @@
       <column name="Fee" primaryKey="false" required="false" type="FLOAT" size="4" autoIncrement="false"/>
       <column name="ExportEvent" primaryKey="false" required="false" type="VARCHAR" size="8" autoIncrement="false"/>
       <column name="GenderMix" primaryKey="false" required="false" type="TINYINT" size="1" autoIncrement="false"/>
+      <unique name="MtEv">
+        <unique-column name="Meet"/>
+        <unique-column name="MtEv"/>
+        <unique-column name="MtEvX"/>
+      </unique>
+      <unique name="ZID">
+        <unique-column name="MtEvent"/>
+      </unique>
     </table>
     <table name="OPTIONS">
       <column name="State" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
@@ -573,6 +722,10 @@
       <column name="SESSION8" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
       <column name="SESSION9" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
       <column name="SESSION10" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <unique name="ZID">
+        <unique-column name="THEATHLETE"/>
+        <unique-column name="THEMEET"/>
+      </unique>
     </table>
     <table name="RECNAME">
       <column name="RecFile" primaryKey="false" required="false" type="VARCHAR" size="16" autoIncrement="false"/>
@@ -599,9 +752,17 @@
       <column name="Rec" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
       <column name="Course" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
       <column name="Division" primaryKey="false" required="false" type="VARCHAR" size="4" autoIncrement="false"/>
+      <index name="Hi_Age">
+        <index-column name="Distance"/>
+        <index-column name="Stroke"/>
+        <index-column name="Sex"/>
+        <index-column name="I_R"/>
+        <index-column name="Hi_Age"/>
+        <index-column name="Lo_Age"/>
+      </index>
     </table>
     <table name="RELAY">
-      <column name="RELAY" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
+      <column name="RELAY" primaryKey="true" required="false" type="INTEGER" size="4" autoIncrement="true"/>
       <column name="MEET" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
       <column name="LO_HI" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
       <column name="TEAM" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
@@ -623,6 +784,30 @@
       <column name="REACTION2" primaryKey="false" required="false" type="VARCHAR" size="10" autoIncrement="false"/>
       <column name="REACTION3" primaryKey="false" required="false" type="VARCHAR" size="10" autoIncrement="false"/>
       <column name="REACTION4" primaryKey="false" required="false" type="VARCHAR" size="10" autoIncrement="false"/>
+      <index name="ATH1">
+        <index-column name="ATH(1)"/>
+      </index>
+      <index name="ATH2">
+        <index-column name="ATH(2)"/>
+      </index>
+      <index name="ATH3">
+        <index-column name="ATH(3)"/>
+      </index>
+      <index name="ATH4">
+        <index-column name="ATH(4)"/>
+      </index>
+      <index name="Team">
+        <index-column name="TEAM"/>
+        <index-column name="DISTANCE"/>
+        <index-column name="STROKE"/>
+        <index-column name="SEX"/>
+        <index-column name="LO_HI"/>
+        <index-column name="MEET"/>
+        <index-column name="LETTER"/>
+      </index>
+      <unique name="ZID">
+        <unique-column name="RELAY"/>
+      </unique>
     </table>
     <table name="RESULT">
       <column name="MEET" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
@@ -635,7 +820,7 @@
       <column name="EX" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
       <column name="ORIGIN" primaryKey="false" required="false" type="VARCHAR" size="8" autoIncrement="false"/>
       <column name="NT" primaryKey="false" required="false" type="TINYINT" size="1" autoIncrement="false"/>
-      <column name="RESULT" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
+      <column name="RESULT" primaryKey="true" required="false" type="INTEGER" size="4" autoIncrement="true"/>
       <column name="MISC" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
       <column name="AGE" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
       <column name="DISTANCE" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
@@ -647,9 +832,41 @@
       <column name="TRANK" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
       <column name="COURSE" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
       <column name="REACTION" primaryKey="false" required="false" type="VARCHAR" size="10" autoIncrement="false"/>
+      <foreign-key foreignTable="SPLITS" name="ResultsSplits">
+        <reference local="RESULT" foreign="SplitID"/>
+      </foreign-key>
+      <index name="Athlete">
+        <index-column name="ATHLETE"/>
+      </index>
+      <index name="Fast">
+        <index-column name="ATHLETE"/>
+        <index-column name="I_R"/>
+        <index-column name="DISTANCE"/>
+        <index-column name="STROKE"/>
+        <index-column name="COURSE"/>
+        <index-column name="RANK"/>
+      </index>
+      <index name="FastRelay">
+        <index-column name="TEAM"/>
+        <index-column name="I_R"/>
+        <index-column name="DISTANCE"/>
+        <index-column name="STROKE"/>
+        <index-column name="COURSE"/>
+        <index-column name="RANK"/>
+      </index>
+      <unique name="Meet">
+        <unique-column name="MEET"/>
+        <unique-column name="ATHLETE"/>
+        <unique-column name="I_R"/>
+        <unique-column name="MTEVENT"/>
+        <unique-column name="F_P"/>
+      </unique>
+      <unique name="ZID">
+        <unique-column name="RESULT"/>
+      </unique>
     </table>
     <table name="RSTA">
-      <column name="Std" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
+      <column name="Std" primaryKey="true" required="false" type="INTEGER" size="4" autoIncrement="true"/>
       <column name="Lo_Age" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
       <column name="Hi_age" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
       <column name="F(0)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
@@ -729,6 +946,17 @@
       <column name="Sex" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
       <column name="I_R" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
       <column name="Division" primaryKey="false" required="false" type="VARCHAR" size="4" autoIncrement="false"/>
+      <unique name="Hi_Age">
+        <unique-column name="Distance"/>
+        <unique-column name="Stroke"/>
+        <unique-column name="Sex"/>
+        <unique-column name="I_R"/>
+        <unique-column name="Hi_age"/>
+        <unique-column name="Lo_Age"/>
+      </unique>
+      <unique name="ZID">
+        <unique-column name="Std"/>
+      </unique>
     </table>
     <table name="SESSIONS">
       <column name="MEETID" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
@@ -738,13 +966,23 @@
       <column name="MAXCOMBINED" primaryKey="false" required="false" type="TINYINT" size="1" autoIncrement="false"/>
     </table>
     <table name="SetDescriptions">
-      <column name="set_name" primaryKey="false" required="false" type="VARCHAR" size="60" autoIncrement="false"/>
+      <column name="set_name" primaryKey="true" required="false" type="VARCHAR" size="60" autoIncrement="false"/>
+      <unique name="setname">
+        <unique-column name="set_name"/>
+      </unique>
     </table>
     <table name="SPLITS">
       <column name="SplitID" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
       <column name="SplitIndex" primaryKey="false" required="false" type="TINYINT" size="1" autoIncrement="false"/>
       <column name="Split" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
       <column name="StrokeRate" primaryKey="false" required="false" type="FLOAT" size="4" autoIncrement="false"/>
+      <foreign-key foreignTable="RESULT" name=".rF">
+        <reference local="SplitID" foreign="RESULT"/>
+      </foreign-key>
+      <unique name="PrimaryKey">
+        <unique-column name="SplitID"/>
+        <unique-column name="SplitIndex"/>
+      </unique>
     </table>
     <table name="STDNAME">
       <column name="StdFile" primaryKey="false" required="false" type="VARCHAR" size="16" autoIncrement="false"/>
@@ -776,11 +1014,14 @@
       <column name="D12Des" primaryKey="false" required="false" type="VARCHAR" size="30" autoIncrement="false"/>
     </table>
     <table name="StrokeCategory">
-      <column name="stroke_abbr" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <column name="stroke_abbr" primaryKey="true" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
       <column name="stroke_name" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <unique name="strokeabbr">
+        <unique-column name="stroke_abbr"/>
+      </unique>
     </table>
     <table name="TEAM">
-      <column name="Team" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
+      <column name="Team" primaryKey="true" required="false" type="INTEGER" size="4" autoIncrement="true"/>
       <column name="TCode" primaryKey="false" required="false" type="VARCHAR" size="10" autoIncrement="false"/>
       <column name="TName" primaryKey="false" required="false" type="VARCHAR" size="60" autoIncrement="false"/>
       <column name="Short" primaryKey="false" required="false" type="VARCHAR" size="32" autoIncrement="false"/>
@@ -802,6 +1043,19 @@
       <column name="EMail" primaryKey="false" required="false" type="VARCHAR" size="72" autoIncrement="false"/>
       <column name="TM50" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
       <column name="TDivision" primaryKey="false" required="false" type="VARCHAR" size="6" autoIncrement="false"/>
+      <index name="Code">
+        <index-column name="TCode"/>
+      </index>
+      <unique name="LSC">
+        <unique-column name="LSC"/>
+        <unique-column name="TCode"/>
+      </unique>
+      <index name="Name">
+        <index-column name="TName"/>
+      </index>
+      <unique name="ZID">
+        <unique-column name="Team"/>
+      </unique>
     </table>
     <table name="TestData">
       <column name="test_no" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
@@ -810,12 +1064,21 @@
       <column name="heart_2" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
       <column name="heart_3" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
       <column name="ind_rmk" primaryKey="false" required="false" type="VARCHAR" size="80" autoIncrement="false"/>
+      <index name="testnoathno">
+        <index-column name="test_no"/>
+        <index-column name="athlete"/>
+      </index>
     </table>
     <table name="TestLine">
       <column name="test_no" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
       <column name="athlete" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
       <column name="rep_no" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
       <column name="rep_time" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <index name="testrepno">
+        <index-column name="test_no"/>
+        <index-column name="athlete"/>
+        <index-column name="rep_no"/>
+      </index>
     </table>
     <table name="TestSet">
       <column name="test_no" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
@@ -828,6 +1091,20 @@
       <column name="test_rmk" primaryKey="false" required="false" type="VARCHAR" size="80" autoIncrement="false"/>
       <column name="test_stroke" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
       <column name="use_it" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <index name="testdate">
+        <index-column name="test_date"/>
+      </index>
+      <index name="testno">
+        <index-column name="test_no"/>
+      </index>
+      <index name="testsort">
+        <index-column name="test_sly"/>
+        <index-column name="test_dist"/>
+        <index-column name="tot_reps"/>
+        <index-column name="test_interval"/>
+        <index-column name="test_stroke"/>
+        <index-column name="test_date"/>
+      </index>
     </table>
     <table name="TestT30">
       <column name="athlete" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
@@ -841,9 +1118,18 @@
       <column name="heart_2" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
       <column name="heart_3" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
       <column name="use_it" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <index name="athnodate">
+        <index-column name="athlete"/>
+        <index-column name="test_date"/>
+        <index-column name="test_sly"/>
+      </index>
+      <index name="testt30date">
+        <index-column name="test_date"/>
+        <index-column name="test_sly"/>
+      </index>
     </table>
     <table name="TIMESTD2">
-      <column name="Std" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
+      <column name="Std" primaryKey="true" required="false" type="INTEGER" size="4" autoIncrement="true"/>
       <column name="Lo_Age" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
       <column name="Hi_age" primaryKey="false" required="false" type="SMALLINT" size="2" autoIncrement="false"/>
       <column name="F(0)" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
@@ -923,9 +1209,20 @@
       <column name="Sex" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
       <column name="I_R" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
       <column name="Division" primaryKey="false" required="false" type="VARCHAR" size="4" autoIncrement="false"/>
+      <unique name="ZID">
+        <unique-column name="Std"/>
+      </unique>
+      <unique name="Hi_Age">
+        <unique-column name="Distance"/>
+        <unique-column name="Stroke"/>
+        <unique-column name="Sex"/>
+        <unique-column name="I_R"/>
+        <unique-column name="Hi_age"/>
+        <unique-column name="Lo_Age"/>
+      </unique>
     </table>
     <table name="WkParam">
-      <column name="wk_ptr" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="true"/>
+      <column name="wk_ptr" primaryKey="true" required="false" type="INTEGER" size="4" autoIncrement="true"/>
       <column name="wk_num" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
       <column name="wk_date" primaryKey="false" required="false" type="TIMESTAMP" size="8" autoIncrement="false"/>
       <column name="start_time" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
@@ -936,10 +1233,34 @@
       <column name="tot_yards" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
       <column name="tot_stress" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
       <column name="ck_selected" primaryKey="false" required="false" type="BOOLEAN" size="1" autoIncrement="false"/>
+      <index name="wkdate">
+        <index-column name="wk_date"/>
+        <index-column name="group_abbr"/>
+        <index-column name="subgroup_abbr"/>
+        <index-column name="start_time"/>
+      </index>
+      <index name="wkgroup">
+        <index-column name="group_abbr"/>
+        <index-column name="subgroup_abbr"/>
+        <index-column name="wk_date"/>
+        <index-column name="start_time"/>
+      </index>
+      <index name="wknum">
+        <index-column name="wk_num"/>
+      </index>
+      <unique name="wkparameter">
+        <unique-column name="wk_ptr"/>
+      </unique>
+      <index name="wktotyards">
+        <index-column name="tot_yards"/>
+      </index>
     </table>
     <table name="WorkCategory">
-      <column name="stroke_abbr" primaryKey="false" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
+      <column name="stroke_abbr" primaryKey="true" required="false" type="VARCHAR" size="2" autoIncrement="false"/>
       <column name="stroke_name" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false"/>
+      <unique name="workabbr">
+        <unique-column name="stroke_abbr"/>
+      </unique>
     </table>
     <table name="Workout">
       <column name="wk_ptr" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
@@ -959,5 +1280,9 @@
       <column name="tot_yards" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
       <column name="set_starttime" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
       <column name="set_finishtime" primaryKey="false" required="false" type="INTEGER" size="4" autoIncrement="false"/>
+      <index name="wkptrline">
+        <index-column name="wk_ptr"/>
+        <index-column name="wk_line"/>
+      </index>
     </table>
   </database>

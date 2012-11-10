@@ -21,9 +21,7 @@ class AccessDatabaseReaderTest extends GroovyTestCase {
 	 */
 	void testRead() {
 		File file = new File("src/test/resources/RSTA_2012_League.mdb")
-		Database database = AccessDatabaseReader.read(file) 
+		Database database = new AccessDatabaseReader(srcdatabase: file).read()
 		new DatabaseIO().write(database, "src/test/resources/access-schema.xml");
-		
 	}
-
 }
