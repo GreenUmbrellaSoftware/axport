@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+  <database name="unnamed">
+    <table name="CLINIC">
+      <column name="ID" primaryKey="true" required="true" type="BIGINT" size="64" autoIncrement="true"/>
+      <column name="VERSION" primaryKey="false" required="true" type="BIGINT" size="64" autoIncrement="false"/>
+    </table>
+    <table name="PERSON">
+      <column name="ID" primaryKey="true" required="true" type="BIGINT" size="64" autoIncrement="true"/>
+      <column name="VERSION" primaryKey="false" required="true" type="BIGINT" size="64" autoIncrement="false"/>
+      <column name="FIRST_NAME" primaryKey="false" required="true" type="VARCHAR" size="255" autoIncrement="false"/>
+      <column name="LAST_NAME" primaryKey="false" required="true" type="VARCHAR" size="255" autoIncrement="false"/>
+      <column name="CLASS" primaryKey="false" required="true" type="VARCHAR" size="255" autoIncrement="false"/>
+      <column name="ADDRESS" primaryKey="false" required="false" type="VARCHAR" size="255" autoIncrement="false"/>
+      <column name="CITY" primaryKey="false" required="false" type="VARCHAR" size="255" autoIncrement="false"/>
+      <column name="TELEPHONE" primaryKey="false" required="false" type="VARCHAR" size="255" autoIncrement="false"/>
+    </table>
+    <table name="PET">
+      <column name="ID" primaryKey="true" required="true" type="BIGINT" size="64" autoIncrement="true"/>
+      <column name="VERSION" primaryKey="false" required="true" type="BIGINT" size="64" autoIncrement="false"/>
+      <column name="BIRTH_DATE" primaryKey="false" required="true" type="TIMESTAMP" size="6" autoIncrement="false"/>
+      <column name="NAME" primaryKey="false" required="true" type="VARCHAR" size="255" autoIncrement="false"/>
+      <column name="OWNER_ID" primaryKey="false" required="true" type="BIGINT" size="64" autoIncrement="false"/>
+      <column name="TYPE_ID" primaryKey="false" required="true" type="BIGINT" size="64" autoIncrement="false"/>
+      <foreign-key foreignTable="PERSON" name="FK1B11F7EF25B8B">
+        <reference local="OWNER_ID" foreign="ID"/>
+      </foreign-key>
+      <foreign-key foreignTable="PET_TYPE" name="FK1B11F4E39CFAA">
+        <reference local="TYPE_ID" foreign="ID"/>
+      </foreign-key>
+    </table>
+    <table name="PET_TYPE">
+      <column name="ID" primaryKey="true" required="true" type="BIGINT" size="64" autoIncrement="true"/>
+      <column name="VERSION" primaryKey="false" required="true" type="BIGINT" size="64" autoIncrement="false"/>
+      <column name="NAME" primaryKey="false" required="true" type="VARCHAR" size="255" autoIncrement="false"/>
+    </table>
+    <table name="SPECIALITY">
+      <column name="ID" primaryKey="true" required="true" type="BIGINT" size="64" autoIncrement="true"/>
+      <column name="VERSION" primaryKey="false" required="true" type="BIGINT" size="64" autoIncrement="false"/>
+      <column name="NAME" primaryKey="false" required="true" type="VARCHAR" size="255" autoIncrement="false"/>
+    </table>
+    <table name="VET_SPECIALITY">
+      <column name="VET_SPECIALITIES_ID" primaryKey="false" required="false" type="BIGINT" size="64" autoIncrement="false"/>
+      <column name="SPECIALITY_ID" primaryKey="false" required="false" type="BIGINT" size="64" autoIncrement="false"/>
+      <foreign-key foreignTable="PERSON" name="FKB7CE362FA0324E23">
+        <reference local="VET_SPECIALITIES_ID" foreign="ID"/>
+      </foreign-key>
+      <foreign-key foreignTable="SPECIALITY" name="FKB7CE362F8E01B189">
+        <reference local="SPECIALITY_ID" foreign="ID"/>
+      </foreign-key>
+    </table>
+    <table name="VISIT">
+      <column name="ID" primaryKey="true" required="true" type="BIGINT" size="64" autoIncrement="true"/>
+      <column name="VERSION" primaryKey="false" required="true" type="BIGINT" size="64" autoIncrement="false"/>
+      <column name="DATE" primaryKey="false" required="true" type="TIMESTAMP" size="6" autoIncrement="false"/>
+      <column name="DESCRIPTION" primaryKey="false" required="true" type="VARCHAR" size="255" autoIncrement="false"/>
+      <column name="PET_ID" primaryKey="false" required="true" type="BIGINT" size="64" autoIncrement="false"/>
+      <foreign-key foreignTable="PET" name="FK6B04D4BBC7AC4B">
+        <reference local="PET_ID" foreign="ID"/>
+      </foreign-key>
+    </table>
+  </database>

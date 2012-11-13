@@ -11,9 +11,14 @@ repositories {
  
 dependencies {
     groovy  'org.codehaus.groovy:groovy-all:1.8.6'
+	compile files('C:/Users/Kris/code/ddlutils/target/ddlutils-1.1.jar')
 	compile 'org.apache.ddlutils:ddlutils:1.0'
 	compile 'org.apache.derby:derby:10.9.1.0'
     compile 'com.healthmarketscience.jackcess:jackcess:1.2.7'
     testRuntime 'junit:junit:4.10'
+	testRuntime 'com.h2database:h2:1.3.168'
+	testRuntime 'org.hsqldb:hsqldb:1.8.0.10'
+	testRuntime 'org.apache.ant:ant:1.8.4'
+	testRuntime 'log4j:log4j:1.2.17'
 }
 
