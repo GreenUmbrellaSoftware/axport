@@ -18,8 +18,14 @@ import groovy.util.logging.Log
 @Log
 class AccessDatabaseReader {
 
+	/**
+	 * Source database that this reader will read.
+	 * 
+	 * <p>
+	 * Defaults to "data.mdb"
+	 * 
+	 */
 	File srcdatabase = new File ("data.mdb")
-
 
 	org.apache.ddlutils.model.Database read () {
 
@@ -30,10 +36,9 @@ class AccessDatabaseReader {
 		return toDatabaseModel(accessDb)
 	}
 
-
 	private org.apache.ddlutils.model.Database toDatabaseModel (Database accessDb) {
 		org.apache.ddlutils.model.Database database =  new org.apache.ddlutils.model.Database()
-		log.info accessDb.databasePassword
+//		log.info accessDb.databasePassword
 
 		database.name = accessDb.file.name - ".mdb"
 
@@ -82,7 +87,7 @@ class AccessDatabaseReader {
 			org.apache.ddlutils.model.Table table = database.findTable(accessTable.name)
 
 			for (Index accessIndex : accessTable.indexes) {
-				println "INDEX: $accessIndex"
+//				println "INDEX: $accessIndex"
 				if (accessIndex.foreignKey) {
 
 					Index accessFk = accessIndex.referencedIndex
@@ -96,14 +101,14 @@ class AccessDatabaseReader {
 
 					List<ColumnDescriptor> accessLocalCols = accessIndex.columns
 					for (ColumnDescriptor accessLocalCol  : accessLocalCols) {
-						println "localCol: $accessLocalCol"
+//						println "localCol: $accessLocalCol"
 						org.apache.ddlutils.model.Column localCol = table.findColumn(accessLocalCol.name)
 						ref.localColumn = localCol
 					}
 
 					List<ColumnDescriptor> accessFkCols = accessFk.columns
 					for (ColumnDescriptor accessFkCol : accessFkCols) {
-						println "fkCol: $accessFkCol"
+//						println "fkCol: $accessFkCol"
 
 						org.apache.ddlutils.model.Column refCol = foreignTable.findColumn(accessFkCol.name)
 						ref.foreignColumn = refCol

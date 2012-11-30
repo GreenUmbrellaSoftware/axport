@@ -24,6 +24,7 @@ Options:
 		}
 
 		AccessDatabaseReader adr = new AccessDatabaseReader()
+		AccessDatabaseExporter ade = new AccessDatabaseExporter()
 		args.eachWithIndex { arg, idx ->
 
 			int nextIdx = idx+1
@@ -35,11 +36,16 @@ Options:
 				else {
 					File srcdatabase = new File (args[nextIdx])
 					adr.srcdatabase = srcdatabase
+					ade.srcdatabase = srcdatabase
 				}
 			}
 		}
 
 		Database database = adr.read()
 		new DatabaseIO().write(database, "${database.name}-schema.xml")
+		
+		ade.export()
+		
+		
 	}
 }
