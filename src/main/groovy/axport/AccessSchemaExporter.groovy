@@ -15,8 +15,11 @@ import com.healthmarketscience.jackcess.Table
 
 import groovy.util.logging.Log
 
+
+//TODO if a field is labled as autoincrement, on import of data, it will use the autoincrement value instead of imported data
+//TODO guard against database reserved names - append an underscore to end of name
 @Log
-class AccessDatabaseReader {
+class AccessSchemaExporter {
 
 	/**
 	 * Source database that this reader will read.
@@ -27,7 +30,7 @@ class AccessDatabaseReader {
 	 */
 	File srcdatabase = new File ("data.mdb")
 
-	org.apache.ddlutils.model.Database read () {
+	org.apache.ddlutils.model.Database export () {
 
 		if (!srcdatabase.canRead()) {
 			throw new IOException ("Cannot read database at ${srcdatabase?.absolutePath}." )
@@ -38,7 +41,7 @@ class AccessDatabaseReader {
 
 	private org.apache.ddlutils.model.Database toDatabaseModel (Database accessDb) {
 		org.apache.ddlutils.model.Database database =  new org.apache.ddlutils.model.Database()
-//		log.info accessDb.databasePassword
+		//		log.info accessDb.databasePassword
 
 		database.name = accessDb.file.name - ".mdb"
 
@@ -87,7 +90,7 @@ class AccessDatabaseReader {
 			org.apache.ddlutils.model.Table table = database.findTable(accessTable.name)
 
 			for (Index accessIndex : accessTable.indexes) {
-//				println "INDEX: $accessIndex"
+				//				println "INDEX: $accessIndex"
 				if (accessIndex.foreignKey) {
 
 					Index accessFk = accessIndex.referencedIndex
@@ -101,14 +104,14 @@ class AccessDatabaseReader {
 
 					List<ColumnDescriptor> accessLocalCols = accessIndex.columns
 					for (ColumnDescriptor accessLocalCol  : accessLocalCols) {
-//						println "localCol: $accessLocalCol"
+						//						println "localCol: $accessLocalCol"
 						org.apache.ddlutils.model.Column localCol = table.findColumn(accessLocalCol.name)
 						ref.localColumn = localCol
 					}
 
 					List<ColumnDescriptor> accessFkCols = accessFk.columns
 					for (ColumnDescriptor accessFkCol : accessFkCols) {
-//						println "fkCol: $accessFkCol"
+						//						println "fkCol: $accessFkCol"
 
 						org.apache.ddlutils.model.Column refCol = foreignTable.findColumn(accessFkCol.name)
 						ref.foreignColumn = refCol

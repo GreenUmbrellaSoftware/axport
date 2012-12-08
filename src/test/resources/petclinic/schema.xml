@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
-  <database name="unnamed">
+  <database name="petclinic">
     <table name="CLINIC">
       <column name="ID" primaryKey="true" required="true" type="BIGINT" size="64" autoIncrement="true"/>
       <column name="VERSION" primaryKey="false" required="true" type="BIGINT" size="64" autoIncrement="false"/>

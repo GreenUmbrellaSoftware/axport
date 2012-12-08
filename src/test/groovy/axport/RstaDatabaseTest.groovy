@@ -21,15 +21,15 @@ import org.junit.After
  *
  */
 @Log
-class DerbyDdlToDatabaseTest {
+class RstaDatabaseTest {
 
-	static final String derbyUrl = "jdbc:derby:memory:petclinic;create=true"
+	static final String derbyUrl = "jdbc:derby:memory:rsta;create=true"
 	static final String derbyDriverClassName = 'org.apache.derby.jdbc.EmbeddedDriver'
 	static final String derbyUsername = "sa"
 	static final String derbyPassword = "password"
-	static final String petclinicSchemaFileName = 'src/test/resources/petclinic/schema.xml'
-	static final String petclinicDataFileName = 'src/test/resources/petclinic/data.xml'
-	static final String TEST_SQL = 'select * from PERSON'
+	static final String petclinicSchemaFileName = 'RSTA_2012_League-schema.xml'
+	static final String petclinicDataFileName = 'RSTA_2012_League-data.xml'
+	static final String TEST_SQL = 'select * from Athlete'
 
 	static final AntBuilder ant = new AntBuilder()
 	/**
@@ -54,12 +54,12 @@ class DerbyDdlToDatabaseTest {
 		Sql sql = Sql.newInstance( derbyUrl, derbyUsername,
 				derbyPassword, derbyDriverClassName )
 		assertNotNull (sql)
-		def people = []
+		def athletes = []
 		sql.eachRow( TEST_SQL ) {
-			log.info "$it.ID -- ${it.LAST_NAME} --"
-			people << it.toRowResult()
+			log.info "$it.Athlete -- ${it.Birth} --"
+			athletes << it.toRowResult()
 		}
-		assertEquals (6, people.size())
+		assertEquals (5, athletes.size())
 	}
 
 	@Test
