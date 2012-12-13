@@ -164,4 +164,5 @@ pip-log.txt
 
 # Gradle build stuff
 .gradle
-/RSTA_2012_League.mdb
+RSTA*
+derby.log
