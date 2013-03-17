@@ -1,5 +1,4 @@
-apply plugin: 'groovy'
-apply plugin: 'eclipse'
+apply plugin: 'java'
 
 version = 0.1
 
@@ -10,11 +9,9 @@ repositories {
 }
  
 dependencies {
-    groovy  'org.codehaus.groovy:groovy-all:1.8.6'
 	compile 'org.apache.ddlutils:ddlutils:1.0'
-	compile 'org.apache.derby:derby:10.9.1.0'
-    compile 'com.healthmarketscience.jackcess:jackcess:1.2.7'
-    testCompile 'junit:junit:4.10'
+    compile 'com.healthmarketscience.jackcess:jackcess:1.2.10'
+    testCompile 'junit:junit:4.11'
 	testCompile 'log4j:log4j:1.2.17'
 	testRuntime 'org.apache.ant:ant:1.8.4'
 }

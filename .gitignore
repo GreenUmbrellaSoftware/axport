@@ -166,3 +166,10 @@ pip-log.txt
 .gradle
 RSTA*
 derby.log
+
+#################
+## IntelliJ IDEA
+#################
+.idea
+out
+*.iml
