@@ -1,12 +1,16 @@
 package com.greenumbrellasoftware.axport;
 
 import com.healthmarketscience.jackcess.*;
+
+import static org.apache.commons.lang.StringUtils.remove;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Arrays;
 
 /**
  * Created with IntelliJ IDEA.
@@ -18,6 +22,21 @@ import java.sql.SQLException;
 public class Exporter {
 
     private static final Log LOG = LogFactory.getLog(Exporter.class);
+
+    private static final String[] MYSQL_RESERVED_WORDS = {"ACCESSIBLE", "ALGORITHM", "ANALYZE", "ASENSITIVE", "BEFORE", "BIGINT", "BINARY", "BLOB", "CALL", "CHANGE", "CONDITION", "COPY", "DATA", "DATABASE", "DATABASES", "DAY_HOUR", "DAY_MICROSECOND", "DAY_MINUTE", "DAY_SECOND", "DELAYED", "DESC", "DETERMINISTIC", "DIRECTORY", "DISCARD", "DISTINCTROW", "DIV", "DUAL", "EACH", "ELSEIF", "ENCLOSED", "ESCAPED", "EXCHANGE", "EXCLUSIVE", "EXIT", "EXPLAIN", "EXPORT", "FLOAT4", "FLOAT8", "FLUSH", "FORCE", "FULLTEXT", "GENERAL", "GROUP", "HIGH_PRIORITY", "HOUR_MICROSECOND", "HOUR_MINUTE", "HOUR_SECOND", "IF", "IGNORE", "IGNORE_SERVER_IDS", "IMPORT", "INFILE", "INOUT", "INPLACE", "INT1", "INT2", "INT3", "INT4", "INT8", "ITERATE", "KEYS", "KILL", "LEAVE", "LIMIT", "LINEAR", "LINES", "LOAD", "LOCALTIME", "LOCALTIMESTAMP", "LOCK", "LONG", "LONGBLOB", "LONGTEXT", "LOOP", "LOW_PRIORITY", "MASTER_HEARTBEAT_PERIOD", "MAXVALUE", "MEDIUMBLOB", "MEDIUMINT", "MEDIUMTEXT", "MIDDLEINT", "MINUTE_MICROSECOND", "MINUTE_SECOND", "MOD", "MODIFIES", "NO_WRITE_TO_BINLOG", "OPTIMIZE", "OPTIONALLY", "OUT", "OUTFILE", "PARTITION", "PRIMARY", "PURGE", "RANGE", "READS", "READ_ONLY", "READ_WRITE", "REBUILD", "REGEXP", "RELEASE", "REMOVE", "RENAME", "REORGANIZE", "REPAIR", "REPEAT", "REPLACE", "REQUIRE", "RESIGNAL", "RETURN", "RLIKE", "SCHEMAS", "SECOND_MICROSECOND", "SENSITIVE", "SEPARATOR", "SHARED", "SHOW", "SIGNAL", "SLOW", "SPATIAL", "SPECIFIC", "SQLEXCEPTION", "SQL_BIG_RESULT", "SQL_CALC_FOUND_ROWS", "SQL_SMALL_RESULT", "SSL", "STARTING", "STRAIGHT_JOIN", "TABLES", "TABLESPACE", "TERMINATED", "TINYBLOB", "TINYINT", "TINYTEXT", "TRIGGER", "UNDO", "UNLOCK", "UNSIGNED", "USE", "UTC_DATE", "UTC_TIME", "UTC_TIMESTAMP", "VARBINARY", "VARCHARACTER", "WHILE", "X509", "XOR", "YEAR_MONTH", "ZEROFILL"};
+
+    private static String cleanName(String originalName) {
+
+        String newName = originalName;
+        if (Arrays.asList(MYSQL_RESERVED_WORDS).contains(newName.toUpperCase())) {
+            newName = String.format("_%s", newName);
+        }
+        newName = remove(newName, "(");
+        newName = remove(newName, ")");
+        newName = remove(newName, ".");
+
+        return newName;
+    }
 
     public static org.apache.ddlutils.model.Database exportSchema(final File mdbFile) throws IOException, SQLException {
 
@@ -32,7 +51,7 @@ public class Exporter {
             Table accessTable = accessDb.getTable(tableName);
 
             org.apache.ddlutils.model.Table table = new org.apache.ddlutils.model.Table();
-            table.setName(accessTable.getName());
+            table.setName(cleanName(accessTable.getName()));
 
             if (LOG.isTraceEnabled()) {
                 LOG.trace(String.format("TABLE: %s", table.getName()));
@@ -42,7 +61,7 @@ public class Exporter {
             for (Column accessColumn : accessTable.getColumns()) {
 
                 org.apache.ddlutils.model.Column column = new org.apache.ddlutils.model.Column();
-                column.setName(accessColumn.getName());
+                column.setName(cleanName(accessColumn.getName()));
                 column.setTypeCode(accessColumn.getSQLType());
                 column.setSizeAndScale(accessColumn.getLength(), accessColumn.getScale());
 
@@ -56,7 +75,7 @@ public class Exporter {
             for (Index accessIndex : accessTable.getIndexes()) {
 
                 org.apache.ddlutils.model.Index index = accessIndex.isUnique() ? new org.apache.ddlutils.model.UniqueIndex() : new org.apache.ddlutils.model.NonUniqueIndex();
-                index.setName(accessIndex.getName());
+                index.setName(cleanName(accessIndex.getName()));
 
                 if (LOG.isTraceEnabled()) {
                     LOG.trace(String.format("INDEX: %s", index.getName()));
@@ -64,7 +83,7 @@ public class Exporter {
 
                 for (IndexData.ColumnDescriptor accessColumnDescriptor : accessIndex.getColumns()) {
                     Column accessColumn = accessColumnDescriptor.getColumn();
-                    org.apache.ddlutils.model.Column column = table.findColumn(accessColumn.getName());
+                    org.apache.ddlutils.model.Column column = table.findColumn(cleanName(accessColumn.getName()));
                     column.setPrimaryKey(accessIndex.isPrimaryKey());
                     org.apache.ddlutils.model.IndexColumn indexColumn = new org.apache.ddlutils.model.IndexColumn(column);
                     index.addColumn(indexColumn);
@@ -83,7 +102,7 @@ public class Exporter {
         // Iterate through the tables a 2nd time in order to add foreign keys
         for (String tableName : accessDb.getTableNames()) {
             Table accessTable = accessDb.getTable(tableName);
-            org.apache.ddlutils.model.Table table = database.findTable(accessTable.getName());
+            org.apache.ddlutils.model.Table table = database.findTable(cleanName(accessTable.getName()));
 
             for (Index accessIndex : accessTable.getIndexes()) {
 
@@ -91,20 +110,20 @@ public class Exporter {
 
                     Index accessFk = accessIndex.getReferencedIndex();
                     org.apache.ddlutils.model.ForeignKey fk = new org.apache.ddlutils.model.ForeignKey();
-                    fk.setName(accessFk.getName());
+                    fk.setName(cleanName(accessFk.getName()));
                     Table accessForeignTable = accessFk.getTable();
-                    org.apache.ddlutils.model.Table foreignTable = database.findTable(accessForeignTable.getName());
+                    org.apache.ddlutils.model.Table foreignTable = database.findTable(cleanName(accessForeignTable.getName()));
                     fk.setForeignTable(foreignTable);
 
                     org.apache.ddlutils.model.Reference ref = new org.apache.ddlutils.model.Reference();
 
                     for (IndexData.ColumnDescriptor accessLocalCol : accessIndex.getColumns()) {
-                        org.apache.ddlutils.model.Column localCol = table.findColumn(accessLocalCol.getName());
+                        org.apache.ddlutils.model.Column localCol = table.findColumn(cleanName(accessLocalCol.getName()));
                         ref.setLocalColumn(localCol);
                     }
 
                     for (IndexData.ColumnDescriptor accessFkCol : accessFk.getColumns()) {
-                        org.apache.ddlutils.model.Column refCol = foreignTable.findColumn(accessFkCol.getName());
+                        org.apache.ddlutils.model.Column refCol = foreignTable.findColumn(cleanName(accessFkCol.getName()));
                         ref.setForeignColumn(refCol);
                     }
                     fk.addReference(ref);

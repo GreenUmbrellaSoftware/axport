@@ -2,13 +2,21 @@ package com.greenumbrellasoftware.axport;
 
 import static junit.framework.Assert.*;
 
+import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.ddlutils.io.DatabaseIO;
 import org.apache.ddlutils.model.Database;
+import org.apache.ddlutils.Platform;
+import org.apache.ddlutils.PlatformFactory;
 import org.junit.Test;
 
+import javax.sql.DataSource;
 import java.io.File;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,6 +28,9 @@ import java.io.File;
 public class ExporterTest {
 
     private static final Log LOG = LogFactory.getLog(ExporterTest.class);
+    private static final String DB =   "rstaDB" ;
+    private static final String DB_USER =   "rstaAdmin" ;
+    private static final String DB_PASSWORD =   "password" ;
 
     @Test
     public void testExportSchema() throws Exception {
@@ -30,4 +41,33 @@ public class ExporterTest {
         new DatabaseIO().write(database, schemaFile.getAbsolutePath());
         assertTrue(schemaFile.length() > 0);
     }
+
+    @Test
+    public void testExportSchemaToMysql() throws Exception {
+        Database database = Exporter.exportSchema(new File("src/test/resources/RSTA_2012_League.mdb"));
+
+        MysqlDataSource ds = new MysqlDataSource();
+        ds.setDatabaseName(DB);
+        ds.setUser(DB_USER);
+        ds.setPassword(DB_PASSWORD);
+
+        Connection con = ds.getConnection();
+        DatabaseMetaData md =  con.getMetaData() ;
+        ResultSet rs = md.getTables(null, null, "%", null);
+        while (rs.next()) {
+            LOG.debug(rs.getString("TABLE_NAME"));
+            fail("There should be no tables at this point.");
+        }
+
+
+        Platform platform = PlatformFactory.createNewPlatformInstance(ds);
+        platform.createTables(database, false, false);
+
+
+        rs.close();
+        con.close();
+
+
+    }
+
 }

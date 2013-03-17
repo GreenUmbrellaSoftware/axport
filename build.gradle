@@ -13,6 +13,6 @@ dependencies {
     compile 'com.healthmarketscience.jackcess:jackcess:1.2.10'
     testCompile 'junit:junit:4.11'
 	testCompile 'log4j:log4j:1.2.17'
-	testRuntime 'org.apache.ant:ant:1.8.4'
+	testRuntime 'mysql:mysql-connector-java:5.1.24'
 }
 
