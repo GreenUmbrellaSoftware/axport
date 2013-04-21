@@ -6,11 +6,16 @@ import static org.apache.commons.lang.StringUtils.remove;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.dom4j.Document;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
 
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -137,5 +142,30 @@ public class Exporter {
         }
         accessDb.close();
         return database;
+    }
+
+    public static Document exportDataToDocument(final File mdbFile) throws IOException {
+        Database accessDb = Database.open(mdbFile, true);
+        Document document = DocumentHelper.createDocument();
+        Element root = document.addElement("data");
+        for (String tableName : accessDb.getTableNames()) {
+
+            Table table = accessDb.getTable(tableName);
+            List<Column> columns = table.getColumns();
+
+            for (Map<String, Object> row : table) {
+
+                Element tableEl = root.addElement(cleanName(tableName));
+                for (Column col : columns) {
+                    Object val = row.get(col.getName());
+                    if (val != null) {
+                        String columnName = cleanName(col.getName());
+                        tableEl.addAttribute(columnName, val.toString());
+                    }
+                } // end iterating through columns
+            } // end iterating through rows
+        } // end iterating through table names
+
+        return document;
     }
 }
