@@ -4,12 +4,21 @@ import com.healthmarketscience.jackcess.*;
 
 import static org.apache.commons.lang.StringUtils.remove;
 
+import com.healthmarketscience.jackcess.Column;
+import com.healthmarketscience.jackcess.Database;
+import com.healthmarketscience.jackcess.Index;
+import com.healthmarketscience.jackcess.Table;
+import org.apache.commons.beanutils.DynaBean;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.ddlutils.Platform;
+import org.apache.ddlutils.PlatformFactory;
+import org.apache.ddlutils.model.*;
 import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 
+import javax.sql.DataSource;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -167,5 +176,36 @@ public class Exporter {
         } // end iterating through table names
 
         return document;
+    }
+
+    public static void exportDataToDatabase(final File mdbFile, final DataSource dataSource) throws IOException, SQLException {
+
+        Platform platform = PlatformFactory.createNewPlatformInstance(dataSource);
+        org.apache.ddlutils.model.Database database = exportSchema(mdbFile);
+
+
+        Database accessDb = Database.open(mdbFile, true);
+
+        for (org.apache.ddlutils.model.Table dbTable : database.getTables()) {
+
+            Table table = accessDb.getTable(dbTable.getName());
+
+            List<Column> columns = table.getColumns();
+
+            for (Map<String, Object> row : table) {
+
+                DynaBean record = database.createDynaBeanFor(dbTable.getName(), false);
+
+                for (Column col : columns) {
+                    Object val = row.get(col.getName());
+                    if (val != null) {
+                        String columnName = cleanName(col.getName());
+                        record.set(columnName, val);
+                    }
+                } // end iterating through columns
+
+                platform.insert(database, record);
+            } // end iterating through rows
+        } // end iterating through table names
     }
 }

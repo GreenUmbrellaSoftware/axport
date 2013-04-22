@@ -21,6 +21,7 @@ import java.io.FileWriter;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
+import java.sql.Statement;
 
 /**
  * Created with IntelliJ IDEA.
@@ -68,12 +69,6 @@ public class ExporterTest {
         Platform platform = PlatformFactory.createNewPlatformInstance(ds);
         platform.createTables(database, false, false);
 
-        rs = md.getTables(null, null, "%", null);
-        while (rs.next()) {
-            LOG.debug(rs.getString("TABLE_NAME"));
-            fail("There should be no tables at this point.");
-        }
-
         rs.close();
         con.close();
 
@@ -98,6 +93,28 @@ public class ExporterTest {
         document.write(out);
 
         assertTrue(outputFile.exists());
+    }
+
+    @Test
+    public void testExportDataToDatabase () throws Exception {
+        MysqlDataSource ds = new MysqlDataSource();
+        ds.setDatabaseName(DB);
+        ds.setUser(DB_USER);
+        ds.setPassword(DB_PASSWORD);
+
+        Connection con = ds.getConnection();
+
+        // Disable foreign keys check
+        Statement stmt = con.createStatement();
+        stmt.execute("SET FOREIGN_KEY_CHECKS=0");
+        stmt.close();
+
+        Exporter.exportDataToDatabase(new File("src/test/resources/RSTA_2012_League.mdb"), ds);
+
+        // Enable foreign keys check
+        stmt.execute("SET FOREIGN_KEY_CHECKS=1");
+        stmt.close();
+
     }
 
 }
