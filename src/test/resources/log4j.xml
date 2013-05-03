@@ -9,6 +9,10 @@
         </layout>
     </appender>
 
+    <logger name="org.apache.ddlutils">
+        <level value="debug"/>
+    </logger>
+
     <logger name="com.greenumbrellasoftware.axport">
         <level value="trace"/>
     </logger>
