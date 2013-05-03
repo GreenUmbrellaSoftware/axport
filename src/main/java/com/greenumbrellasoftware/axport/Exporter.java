@@ -1,37 +1,30 @@
 package com.greenumbrellasoftware.axport;
 
 import com.healthmarketscience.jackcess.*;
-
-import static org.apache.commons.lang.StringUtils.remove;
-
-import com.healthmarketscience.jackcess.Column;
-import com.healthmarketscience.jackcess.Database;
-import com.healthmarketscience.jackcess.Index;
-import com.healthmarketscience.jackcess.Table;
 import org.apache.commons.beanutils.DynaBean;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.ddlutils.Platform;
 import org.apache.ddlutils.PlatformFactory;
-import org.apache.ddlutils.model.*;
-import org.dom4j.Document;
-import org.dom4j.DocumentHelper;
-import org.dom4j.Element;
+import org.apache.ddlutils.io.DataWriter;
+import org.apache.ddlutils.task.DdlToDatabaseTask;
+import org.apache.ddlutils.task.WriteDataToDatabaseCommand;
 
 import javax.sql.DataSource;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.sql.Timestamp;
+import java.util.*;
+
+import static org.apache.commons.lang.StringUtils.remove;
 
 /**
  * Created with IntelliJ IDEA.
- * User: Kris
+ * User: Kris Gholson
  * Date: 3/16/13
  * Time: 1:56 PM
- * To change this template use File | Settings | File Templates.
  */
 public class Exporter {
 
@@ -52,7 +45,8 @@ public class Exporter {
         return newName;
     }
 
-    public static org.apache.ddlutils.model.Database exportSchema(final File mdbFile) throws IOException, SQLException {
+
+    public static org.apache.ddlutils.model.Database exportSchema(final String databaseName, final File mdbFile) throws IOException, SQLException {
 
         LOG.info(String.format("Exporting schema from '%s'", mdbFile.getAbsolutePath()));
 
@@ -112,80 +106,88 @@ public class Exporter {
 
             database.addTable(table);
         }
-
-        // Iterate through the tables a 2nd time in order to add foreign keys
-        for (String tableName : accessDb.getTableNames()) {
-            Table accessTable = accessDb.getTable(tableName);
-            org.apache.ddlutils.model.Table table = database.findTable(cleanName(accessTable.getName()));
-
-            for (Index accessIndex : accessTable.getIndexes()) {
-
-                if (accessIndex.isForeignKey()) {
-
-                    Index accessFk = accessIndex.getReferencedIndex();
-                    org.apache.ddlutils.model.ForeignKey fk = new org.apache.ddlutils.model.ForeignKey();
-                    fk.setName(cleanName(accessFk.getName()));
-                    Table accessForeignTable = accessFk.getTable();
-                    org.apache.ddlutils.model.Table foreignTable = database.findTable(cleanName(accessForeignTable.getName()));
-                    fk.setForeignTable(foreignTable);
-
-                    org.apache.ddlutils.model.Reference ref = new org.apache.ddlutils.model.Reference();
-
-                    for (IndexData.ColumnDescriptor accessLocalCol : accessIndex.getColumns()) {
-                        org.apache.ddlutils.model.Column localCol = table.findColumn(cleanName(accessLocalCol.getName()));
-                        ref.setLocalColumn(localCol);
-                    }
-
-                    for (IndexData.ColumnDescriptor accessFkCol : accessFk.getColumns()) {
-                        org.apache.ddlutils.model.Column refCol = foreignTable.findColumn(cleanName(accessFkCol.getName()));
-                        ref.setForeignColumn(refCol);
-                    }
-                    fk.addReference(ref);
-                    if (LOG.isTraceEnabled()) {
-                        LOG.trace(String.format("FOREIGN KEY: %s  table: %s, foreign table: %s", fk.getName(), table.getName(), fk.getForeignTableName()));
-                    }
-                    table.addForeignKey(fk);
-                }
-            }
-
-        }
         accessDb.close();
+        database.setName(databaseName);
         return database;
     }
 
-    public static Document exportDataToDocument(final File mdbFile) throws IOException {
-        Database accessDb = Database.open(mdbFile, true);
-        Document document = DocumentHelper.createDocument();
-        Element root = document.addElement("data");
-        for (String tableName : accessDb.getTableNames()) {
 
-            Table table = accessDb.getTable(tableName);
+    public static void exportDataToFile(final File mdbFile, final File exportFile) throws IOException, SQLException {
+
+        org.apache.ddlutils.model.Database database = exportSchema(mdbFile.getName(), mdbFile);
+
+        DataWriter dataWriter = new DataWriter(new FileOutputStream(exportFile));
+        dataWriter.writeDocumentStart();
+        Database accessDb = Database.open(mdbFile, true);
+
+        List<DynaBean> beans = new ArrayList<DynaBean>();
+        for (org.apache.ddlutils.model.Table dbTable : database.getTables()) {
+
+            Table table = accessDb.getTable(dbTable.getName());
+
             List<Column> columns = table.getColumns();
 
             for (Map<String, Object> row : table) {
 
-                Element tableEl = root.addElement(cleanName(tableName));
+                DynaBean record = database.createDynaBeanFor(dbTable.getName(), false);
+
+
                 for (Column col : columns) {
                     Object val = row.get(col.getName());
                     if (val != null) {
                         String columnName = cleanName(col.getName());
-                        tableEl.addAttribute(columnName, val.toString());
+                        if (val instanceof Date) {
+                            LOG.debug("Converting date to Timestamp");
+                            long millis = ((Date) val).getTime();
+                            Timestamp timestamp = new Timestamp(millis);
+                            record.set(columnName, timestamp);
+                        } else {
+                            record.set(columnName, val);
+                        }
                     }
                 } // end iterating through columns
+
+                beans.add(record);
+
             } // end iterating through rows
         } // end iterating through table names
-
-        return document;
+        dataWriter.write(beans);
+        dataWriter.writeDocumentEnd();
     }
 
-    public static void exportDataToDatabase(final File mdbFile, final DataSource dataSource) throws IOException, SQLException {
+    public static void importDataFile(final File dataFile, final File schemaFile, final org.apache.commons.dbcp.BasicDataSource dataSource) {
+
+        DdlToDatabaseTask dbTask = new DdlToDatabaseTask();
+
+        dbTask.addConfiguredDatabase(dataSource);
+        dbTask.setSchemaFile(schemaFile);
+
+        WriteDataToDatabaseCommand writeData = new WriteDataToDatabaseCommand();
+        writeData.setEnsureForeignKeyOrder(true);
+        writeData.setDataFile(dataFile);
+        dbTask.addWriteDataToDatabase(writeData);
+        dbTask.execute();
+
+    }
+
+    /**
+     * Read the schema and data from the given Access database file and create the corresponding schema and data
+     * in the passed in data source.  The data source can be from any database supported by the Apache DdlUtils project.
+     *
+     * @param dataSource
+     * @param mdbFile
+     * @throws IOException
+     * @throws SQLException
+     */
+    public static void createDatabaseFromAccessFile(final DataSource dataSource, final File mdbFile) throws IOException, SQLException {
 
         Platform platform = PlatformFactory.createNewPlatformInstance(dataSource);
-        org.apache.ddlutils.model.Database database = exportSchema(mdbFile);
-
+        org.apache.ddlutils.model.Database database = exportSchema(mdbFile.getName(), mdbFile);
+        platform.createTables(database, false, false);
 
         Database accessDb = Database.open(mdbFile, true);
 
+        List<DynaBean> records = new ArrayList<DynaBean>();
         for (org.apache.ddlutils.model.Table dbTable : database.getTables()) {
 
             Table table = accessDb.getTable(dbTable.getName());
@@ -204,8 +206,10 @@ public class Exporter {
                     }
                 } // end iterating through columns
 
-                platform.insert(database, record);
+                records.add(record);
             } // end iterating through rows
         } // end iterating through table names
+
+        platform.insert(database, records);
     }
 }
