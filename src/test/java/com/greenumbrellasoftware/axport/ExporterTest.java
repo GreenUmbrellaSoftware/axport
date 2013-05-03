@@ -10,18 +10,12 @@ import org.apache.ddlutils.io.DatabaseIO;
 import org.apache.ddlutils.model.Database;
 import org.apache.ddlutils.Platform;
 import org.apache.ddlutils.PlatformFactory;
-import org.dom4j.Document;
-import org.dom4j.io.OutputFormat;
-import org.dom4j.io.XMLWriter;
 import org.junit.Test;
 
-import javax.sql.DataSource;
 import java.io.File;
-import java.io.FileWriter;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
-import java.sql.Statement;
 
 /**
  * Created with IntelliJ IDEA.
@@ -36,11 +30,13 @@ public class ExporterTest {
     private static final String DB = "rstaDB";
     private static final String DB_USER = "rstaAdmin";
     private static final String DB_PASSWORD = "password";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/" + DB;
 
     @Test
-    public void testExportSchema() throws Exception {
-        Database database = Exporter.exportSchema(new File("src/test/resources/RSTA_2012_League.mdb"));
-        File schemaFile = File.createTempFile(String.format("%s-", ExporterTest.class.getSimpleName()), ".xml");
+    public void testExportSchemaToFile() throws Exception {
+        Database database = Exporter.exportSchema(DB, new File("src/test/resources/RSTA_2012_League.mdb"));
+//        File schemaFile = File.createTempFile(String.format("%s-", ExporterTest.class.getSimpleName()), ".xml");
+        File schemaFile = new File("src/test/resources/schema.xml");
         LOG.debug(String.format("Writing schema file to %s", schemaFile.getAbsolutePath()));
         assertFalse(schemaFile.length() > 0);
         new DatabaseIO().write(database, schemaFile.getAbsolutePath());
@@ -49,7 +45,7 @@ public class ExporterTest {
 
     @Test
     public void testExportSchemaToMysql() throws Exception {
-        Database database = Exporter.exportSchema(new File("src/test/resources/RSTA_2012_League.mdb"));
+        Database database = Exporter.exportSchema(DB, new File("src/test/resources/RSTA_2012_League.mdb"));
 
 //        GoogleDataSource ds = new GoogleDataSource();
         MysqlDataSource ds = new MysqlDataSource();
@@ -76,7 +72,18 @@ public class ExporterTest {
     }
 
     @Test
-    public void testExportDataToDocument() throws Exception {
+    public void testCreateDatabaseFromAccessFile() throws Exception {
+        MysqlDataSource ds = new MysqlDataSource();
+        ds.setDatabaseName(DB);
+        ds.setUser(DB_USER);
+        ds.setPassword(DB_PASSWORD);
+
+        Exporter.createDatabaseFromAccessFile(ds, new File("src/test/resources/RSTA_2012_League.mdb"));
+
+    }
+
+    @Test
+    public void testExportDataToFile() throws Exception {
 
         File outputFile = new File("src/test/resources/data.xml");
 
@@ -86,34 +93,27 @@ public class ExporterTest {
 
         assertFalse(outputFile.exists());
 
-        Document document = Exporter.exportDataToDocument(new File("src/test/resources/RSTA_2012_League.mdb"));
-        assertNotNull(document);
-
-        FileWriter out = new FileWriter(outputFile);
-        document.write(out);
+        Exporter.exportDataToFile(new File("src/test/resources/RSTA_2012_League.mdb"), outputFile);
 
         assertTrue(outputFile.exists());
+
     }
 
+
     @Test
-    public void testExportDataToDatabase () throws Exception {
-        MysqlDataSource ds = new MysqlDataSource();
-        ds.setDatabaseName(DB);
-        ds.setUser(DB_USER);
+    public void testImportDataFile() throws Exception {
+
+        File schemaFile = new File("src/test/resources/schema.xml");
+        File dataFile = new File("src/test/resources/data.xml");
+
+        org.apache.commons.dbcp.BasicDataSource ds = new org.apache.commons.dbcp.BasicDataSource();
+        ds.setDriverClassName(com.mysql.jdbc.Driver.class.getName());
+        ds.setUsername(DB_USER);
         ds.setPassword(DB_PASSWORD);
+        ds.setUrl(DB_URL);
 
-        Connection con = ds.getConnection();
+        Exporter.importDataFile(dataFile, schemaFile, ds);
 
-        // Disable foreign keys check
-        Statement stmt = con.createStatement();
-        stmt.execute("SET FOREIGN_KEY_CHECKS=0");
-        stmt.close();
-
-        Exporter.exportDataToDatabase(new File("src/test/resources/RSTA_2012_League.mdb"), ds);
-
-        // Enable foreign keys check
-        stmt.execute("SET FOREIGN_KEY_CHECKS=1");
-        stmt.close();
 
     }
 
