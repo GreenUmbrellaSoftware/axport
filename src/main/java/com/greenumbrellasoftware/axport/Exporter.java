@@ -6,17 +6,15 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.ddlutils.Platform;
 import org.apache.ddlutils.PlatformFactory;
-import org.apache.ddlutils.io.DataWriter;
-import org.apache.ddlutils.task.DdlToDatabaseTask;
-import org.apache.ddlutils.task.WriteDataToDatabaseCommand;
 
 import javax.sql.DataSource;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 import static org.apache.commons.lang.StringUtils.remove;
 
@@ -29,7 +27,6 @@ import static org.apache.commons.lang.StringUtils.remove;
 public class Exporter {
 
     private static final Log LOG = LogFactory.getLog(Exporter.class);
-
     private static final String[] MYSQL_RESERVED_WORDS = {"ACCESSIBLE", "ALGORITHM", "ANALYZE", "ASENSITIVE", "BEFORE", "BIGINT", "BINARY", "BLOB", "CALL", "CHANGE", "CONDITION", "COPY", "DATA", "DATABASE", "DATABASES", "DAY_HOUR", "DAY_MICROSECOND", "DAY_MINUTE", "DAY_SECOND", "DELAYED", "DESC", "DETERMINISTIC", "DIRECTORY", "DISCARD", "DISTINCTROW", "DIV", "DUAL", "EACH", "ELSEIF", "ENCLOSED", "ESCAPED", "EXCHANGE", "EXCLUSIVE", "EXIT", "EXPLAIN", "EXPORT", "FLOAT4", "FLOAT8", "FLUSH", "FORCE", "FULLTEXT", "GENERAL", "GROUP", "HIGH_PRIORITY", "HOUR_MICROSECOND", "HOUR_MINUTE", "HOUR_SECOND", "IF", "IGNORE", "IGNORE_SERVER_IDS", "IMPORT", "INFILE", "INOUT", "INPLACE", "INT1", "INT2", "INT3", "INT4", "INT8", "ITERATE", "KEYS", "KILL", "LEAVE", "LIMIT", "LINEAR", "LINES", "LOAD", "LOCALTIME", "LOCALTIMESTAMP", "LOCK", "LONG", "LONGBLOB", "LONGTEXT", "LOOP", "LOW_PRIORITY", "MASTER_HEARTBEAT_PERIOD", "MAXVALUE", "MEDIUMBLOB", "MEDIUMINT", "MEDIUMTEXT", "MIDDLEINT", "MINUTE_MICROSECOND", "MINUTE_SECOND", "MOD", "MODIFIES", "NO_WRITE_TO_BINLOG", "OPTIMIZE", "OPTIONALLY", "OUT", "OUTFILE", "PARTITION", "PRIMARY", "PURGE", "RANGE", "READS", "READ_ONLY", "READ_WRITE", "REBUILD", "REGEXP", "RELEASE", "REMOVE", "RENAME", "REORGANIZE", "REPAIR", "REPEAT", "REPLACE", "REQUIRE", "RESIGNAL", "RETURN", "RLIKE", "SCHEMAS", "SECOND_MICROSECOND", "SENSITIVE", "SEPARATOR", "SHARED", "SHOW", "SIGNAL", "SLOW", "SPATIAL", "SPECIFIC", "SQLEXCEPTION", "SQL_BIG_RESULT", "SQL_CALC_FOUND_ROWS", "SQL_SMALL_RESULT", "SSL", "STARTING", "STRAIGHT_JOIN", "TABLES", "TABLESPACE", "TERMINATED", "TINYBLOB", "TINYINT", "TINYTEXT", "TRIGGER", "UNDO", "UNLOCK", "UNSIGNED", "USE", "UTC_DATE", "UTC_TIME", "UTC_TIMESTAMP", "VARBINARY", "VARCHARACTER", "WHILE", "X509", "XOR", "YEAR_MONTH", "ZEROFILL"};
 
     private static String cleanName(String originalName) {
@@ -44,7 +41,6 @@ public class Exporter {
 
         return newName;
     }
-
 
     public static org.apache.ddlutils.model.Database exportSchema(final String databaseName, final File mdbFile) throws IOException, SQLException {
 
@@ -109,65 +105,6 @@ public class Exporter {
         accessDb.close();
         database.setName(databaseName);
         return database;
-    }
-
-
-    public static void exportDataToFile(final File mdbFile, final File exportFile) throws IOException, SQLException {
-
-        org.apache.ddlutils.model.Database database = exportSchema(mdbFile.getName(), mdbFile);
-
-        DataWriter dataWriter = new DataWriter(new FileOutputStream(exportFile));
-        dataWriter.writeDocumentStart();
-        Database accessDb = Database.open(mdbFile, true);
-
-        List<DynaBean> beans = new ArrayList<DynaBean>();
-        for (org.apache.ddlutils.model.Table dbTable : database.getTables()) {
-
-            Table table = accessDb.getTable(dbTable.getName());
-
-            List<Column> columns = table.getColumns();
-
-            for (Map<String, Object> row : table) {
-
-                DynaBean record = database.createDynaBeanFor(dbTable.getName(), false);
-
-
-                for (Column col : columns) {
-                    Object val = row.get(col.getName());
-                    if (val != null) {
-                        String columnName = cleanName(col.getName());
-                        if (val instanceof Date) {
-                            LOG.debug("Converting date to Timestamp");
-                            long millis = ((Date) val).getTime();
-                            Timestamp timestamp = new Timestamp(millis);
-                            record.set(columnName, timestamp);
-                        } else {
-                            record.set(columnName, val);
-                        }
-                    }
-                } // end iterating through columns
-
-                beans.add(record);
-
-            } // end iterating through rows
-        } // end iterating through table names
-        dataWriter.write(beans);
-        dataWriter.writeDocumentEnd();
-    }
-
-    public static void importDataFile(final File dataFile, final File schemaFile, final org.apache.commons.dbcp.BasicDataSource dataSource) {
-
-        DdlToDatabaseTask dbTask = new DdlToDatabaseTask();
-
-        dbTask.addConfiguredDatabase(dataSource);
-        dbTask.setSchemaFile(schemaFile);
-
-        WriteDataToDatabaseCommand writeData = new WriteDataToDatabaseCommand();
-        writeData.setEnsureForeignKeyOrder(true);
-        writeData.setDataFile(dataFile);
-        dbTask.addWriteDataToDatabase(writeData);
-        dbTask.execute();
-
     }
 
     /**
