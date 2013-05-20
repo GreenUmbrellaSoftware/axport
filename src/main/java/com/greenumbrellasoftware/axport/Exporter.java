@@ -149,4 +149,63 @@ public class Exporter {
 
         platform.insert(database, records);
     }
+
+    /**
+     * Read the schema and data from the given Access database file and create the ddl for the appropriate platform for
+     * the given dataSource.  The data source can be from any database supported by the Apache DdlUtils project.
+     *
+     * @param dataSource
+     * @param mdbFile
+     * @throws IOException
+     * @throws SQLException
+     */
+    public static String createDatabaseDdlFromAccessFile(final DataSource dataSource, final File mdbFile) throws IOException, SQLException {
+
+        Platform platform = PlatformFactory.createNewPlatformInstance(dataSource);
+        org.apache.ddlutils.model.Database database = exportSchema(mdbFile.getName(), mdbFile);
+        return platform.getCreateTablesSql(database, true, false);
+    }
+
+    /**
+     * Read the schema and data from the given Access database file and create the dml to inser the data
+     * for all records in the database.
+     * The data source can be from any database supported by the Apache DdlUtils project.
+     *
+     * @param dataSource
+     * @param mdbFile
+     * @throws IOException
+     * @throws SQLException
+     */
+    public static String createDatabaseInsertStatementsFromAccessFile(final DataSource dataSource, final File mdbFile) throws IOException, SQLException {
+
+        StringBuilder sb = new StringBuilder();
+        Platform platform = PlatformFactory.createNewPlatformInstance(dataSource);
+        org.apache.ddlutils.model.Database database = exportSchema(mdbFile.getName(), mdbFile);
+
+        Database accessDb = Database.open(mdbFile, true);
+
+        for (org.apache.ddlutils.model.Table dbTable : database.getTables()) {
+
+            Table table = accessDb.getTable(dbTable.getName());
+
+            List<Column> columns = table.getColumns();
+
+            for (Map<String, Object> row : table) {
+
+                DynaBean record = database.createDynaBeanFor(dbTable.getName(), false);
+
+                for (Column col : columns) {
+                    Object val = row.get(col.getName());
+                    if (val != null) {
+                        String columnName = cleanName(col.getName());
+                        record.set(columnName, val);
+                    }
+                } // end iterating through columns
+
+                sb.append(platform.getInsertSql(database, record) + "\n");
+            } // end iterating through rows
+        } // end iterating through table names
+        return sb.toString();
+    }
+
 }
